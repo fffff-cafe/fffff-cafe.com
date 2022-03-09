@@ -1,9 +1,14 @@
 import React from "react"
+import CoverImageSection from "components/cover-image-section"
+import ConceptSection from "components/concept-section"
+import SystemSection from "components/system-section"
 
 const IndexPage = (): React.ReactElement => {
   return (
     <>
-      <h1>Hello, FFFFF cafe</h1>
+      <CoverImageSection />
+      <ConceptSection />
+      <SystemSection />
     </>
   )
 }

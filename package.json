@@ -4,7 +4,14 @@
   "description": "https://github.com/fffff-cafe/fffff-cafe.com/",
   "main": "index.js",
   "scripts": {
-    "dev": "next"
+    "dev": "next",
+    "lint": "eslint ./**/*.{ts,tsx}",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix"
+    ]
   },
   "repository": {
     "type": "git",

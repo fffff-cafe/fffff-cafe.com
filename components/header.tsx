@@ -3,9 +3,10 @@ import React, { ReactElement } from "react"
 const Header = (): ReactElement => {
   return (
     <>
-      <section>
-        <h2>ヘッダー、ナビゲーション</h2>
-      </section>
+      <header>
+        ヘッダ
+        <nav>ナビゲーション</nav>
+      </header>
     </>
   )
 }

@@ -3,9 +3,9 @@ import React, { ReactElement } from "react"
 const Footer = (): ReactElement => {
   return (
     <>
-      <section>
+      <footer>
         <h2>フッター</h2>
-      </section>
+      </footer>
     </>
   )
 }

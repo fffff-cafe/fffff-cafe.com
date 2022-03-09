@@ -1,6 +1,25 @@
 # FFFFF Cafe
 https://github.com/fffff-cafe/fffff-cafe.com/
 
+# 2022-02-09
+
+## ページ構成
+- カバー写真
+- 店のコンセプト
+- システム
+-  雰囲気
+-  営業カレンダー
+- メニュー
+- リアルタイム情報（Twitter）
+- アクセス
+- フッター・リンク
+
+### メニュー
+- アクセス
+- 営業カレンダー
+
+# 2022-02-02
+
 ## なにをつくるか
 5W1H
 - Who
@@ -45,7 +64,7 @@ Hosting: netlify or firebase
 
 ### 地図
  google mapの埋め込み
- iframeの貼り付け  
+ iframeの貼り付け
 ### アクセスの方法
 JR神田駅4分
 銀座線神田駅3分

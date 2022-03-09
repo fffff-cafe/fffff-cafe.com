@@ -18,12 +18,15 @@ width: 100%;
 
 const CoverTitle = Styled.section`
 color: #eee;
-height: 50%;
+height: 100%;
 margin: 0;
-padding-top: 15%;
+padding-top: 50%;
 position: absolute;
 text-align: center;
 width: 100%;
+h1 {
+  line-height: 1.5;
+}
 `
 
 const CoverImageSection = (): ReactElement => {
@@ -33,6 +36,7 @@ const CoverImageSection = (): ReactElement => {
         <CoverContent>
           <CoverTitle>
             <h1>FFFFF Cafe</h1>
+            <p>神田にある作業ができるカフェ</p>
           </CoverTitle>
         </CoverContent>
       </CoverBackground>

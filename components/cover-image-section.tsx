@@ -5,12 +5,16 @@ const CoverBackground = Styled.div`
 background-image: url(/images/cover.jpg);
 background-size: cover;
 background-position: center;
+display: flex;
 height: 50vh;
 width: 100%;
 `
 
 const CoverContent = Styled.div`
 background-color: rgba(0, 0, 0, 0.666);
+display: flex;
+flex-direction: column;
+justify-content: space-around;
 height: 100%;
 position: relative;
 width: 100%;
@@ -18,9 +22,8 @@ width: 100%;
 
 const CoverTitle = Styled.section`
 color: #eee;
-height: 100%;
+height: 33%;
 margin: 0;
-padding-top: 50%;
 position: absolute;
 text-align: center;
 width: 100%;

@@ -1,13 +1,18 @@
 import React, { ReactElement } from "react"
 import { primaryColorHex } from "utils/constant"
 import Styled from "styled-components"
+import ScrollIntoView from "react-scroll-into-view"
 
 const Header = Styled.header`
   background-color: ${primaryColorHex};
+  box-sizing: border-box;
   color: #eee;
   display: flex;
   justify-content: space-between;
   padding: 1rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
   h1 {
     font-size: 1rem;
     margin: 0;
@@ -36,10 +41,14 @@ const HeaderSection = (): ReactElement => {
         <nav>
           <ul>
             <li>
-              <a href="/">アクセス</a>
+              <ScrollIntoView selector="#calendar">
+                <>カレンダー</>
+              </ScrollIntoView>
             </li>
             <li>
-              <a href="/">カレンダー</a>
+              <ScrollIntoView selector="#access">
+                <>アクセス</>
+              </ScrollIntoView>
             </li>
           </ul>
         </nav>

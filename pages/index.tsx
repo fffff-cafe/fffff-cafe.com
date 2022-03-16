@@ -13,7 +13,6 @@ import SystemSection from "components/system-section"
 const IndexPage = (): React.ReactElement => {
   return (
     <>
-      <Header />
       <CoverImageSection />
       <ConceptSection />
       <SystemSection />
@@ -23,6 +22,7 @@ const IndexPage = (): React.ReactElement => {
       <NowSection />
       <AccessSection />
       <FooterSection />
+      <Header />
     </>
   )
 }

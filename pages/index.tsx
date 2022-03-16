@@ -3,7 +3,7 @@ import AccessSection from "components/access-section"
 import CalendarSection from "components/calendar-section"
 import ConceptSection from "components/concept-section"
 import CoverImageSection from "components/cover-image-section"
-import Footer from "components/footer"
+import FooterSection from "components/footer-section"
 import Header from "components/header"
 import MenuSection from "components/menu-section"
 import MoodSection from "components/mood-section"
@@ -22,7 +22,7 @@ const IndexPage = (): React.ReactElement => {
       <MenuSection />
       <NowSection />
       <AccessSection />
-      <Footer />
+      <FooterSection />
     </>
   )
 }

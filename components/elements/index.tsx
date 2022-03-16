@@ -18,6 +18,7 @@ text-align: center;
 iframe {
   display: block;
   margin: auto;
+  max-height: 66vh;
   max-width: min(600px, 100%);
 }
 `

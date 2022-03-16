@@ -1,11 +1,18 @@
 import React, { ReactElement } from "react"
+import { Section, SectionTitle } from "components/elements"
 
 const MenuSection = (): ReactElement => {
   return (
     <>
-      <section>
-        <h2>めにゅう</h2>
-      </section>
+      <Section>
+        <SectionTitle>メニュー</SectionTitle>
+        <iframe
+          src="//reload-co-jp.github.io/cookban/"
+          title="menu"
+          width={600}
+          height={600}
+        ></iframe>
+      </Section>
     </>
   )
 }

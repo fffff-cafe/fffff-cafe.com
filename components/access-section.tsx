@@ -1,24 +1,11 @@
 import React, { ReactElement } from "react"
 
-import Styled from "styled-components"
-import { SectionTitle } from "components/elements"
-
-const Access = Styled.section`
-background: #666;
-color: #f0f0f0;
-padding: 2rem 0;
-text-align: center;
-iframe {
-  display: block;
-  margin: auto;
-  max-width: min(600px, 100%);
-}
-`
+import { Section, SectionTitle } from "components/elements"
 
 const AccessSection = (): ReactElement => {
   return (
     <>
-      <Access>
+      <Section>
         <SectionTitle>アクセス</SectionTitle>
         <div>
           <iframe
@@ -31,7 +18,7 @@ const AccessSection = (): ReactElement => {
             title="google map"
           ></iframe>
         </div>
-      </Access>
+      </Section>
     </>
   )
 }

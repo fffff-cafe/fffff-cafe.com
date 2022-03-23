@@ -4,6 +4,7 @@
   "description": "https://github.com/fffff-cafe/fffff-cafe.com/",
   "main": "index.js",
   "scripts": {
+    "build": "NODE_ENV=production next build && next export",
     "dev": "next",
     "lint": "eslint ./**/*.{ts,tsx}",
     "prepare": "husky install"

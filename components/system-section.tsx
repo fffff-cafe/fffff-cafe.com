@@ -20,16 +20,32 @@ const SystemSection = (): ReactElement => {
     <>
       <Section>
         <SectionTitle>FFFFF Cafeの利用について</SectionTitle>
-        <p>コーヒー1杯500円~で利用できる作業のできるカフェ</p>
+        <p>コーヒー1杯500円~で利用できる作業のできるカフェです。</p>
         <Table>
           <tbody>
             <tr>
+              <th>営業時間</th>
+              <td>平日 13:00 ~ 21:00</td>
+            </tr>
+            <tr>
+              <th>席数</th>
+              <td>10席</td>
+            </tr>
+            <tr>
               <th>電源</th>
-              <td>全席あります</td>
+              <td>全席完備</td>
             </tr>
             <tr>
               <th>Wi-Fi</th>
-              <td>あります</td>
+              <td>無料</td>
+            </tr>
+            <tr>
+              <th>貸出設備</th>
+              <td>モニター、充電ケーブル</td>
+            </tr>
+            <tr>
+              <th>会議室利用</th>
+              <td>応相談</td>
             </tr>
           </tbody>
         </Table>

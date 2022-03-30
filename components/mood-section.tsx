@@ -1,7 +1,8 @@
 import React, { ReactElement, useState } from "react"
 import { Section, SectionTitle } from "components/elements"
 import Styled from "styled-components"
-import Modal from "react-modal"
+import LightBox from "react-image-lightbox"
+import "react-image-lightbox/style.css"
 
 const PhotoGrid = Styled.div`
 align-items: center;
@@ -28,16 +29,16 @@ max-width: 640px;
 }
 `
 
-const photos = Array(12).fill(
-  "https://lh3.googleusercontent.com/p/AF1QipOCPxXXplJ4hFEnmGz-J43yxlZxeh1AhxpJUtIz=w960-h960-n-o-v1"
-)
+const photos = Array(9)
+  .fill(null)
+  .map((_, i) => `/images/photo_${i + 1}.jpg`)
 
 const MoodSection = (): ReactElement => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [modalImageUrl, setModalImageUrl] = useState<string>("")
-  const openModal = (photoUrl: string) => {
+  const [imageIndex, setImageIndex] = useState<number>(0)
+  const openModal = (index: number) => {
     setIsOpen(true)
-    setModalImageUrl(photoUrl)
+    setImageIndex(index)
   }
   return (
     <>
@@ -48,7 +49,7 @@ const MoodSection = (): ReactElement => {
             <div
               key={i}
               className="item"
-              onClick={() => openModal(photo)}
+              onClick={() => openModal(i)}
               role="button"
               tabIndex={i}
               aria-hidden="true"
@@ -57,26 +58,20 @@ const MoodSection = (): ReactElement => {
           ))}
         </PhotoGrid>
       </Section>
-      <Modal
-        isOpen={isOpen}
-        onRequestClose={() => setIsOpen(false)}
-        style={{
-          content: {
-            backgroundColor: "#000",
-            padding: 0,
-          },
-        }}
-      >
-        <img
-          src={modalImageUrl}
-          alt="店舗画像"
-          style={{
-            display: "block",
-            height: "100%",
-            margin: "auto",
-          }}
+      {isOpen && (
+        <LightBox
+          mainSrc={photos[imageIndex]}
+          nextSrc={photos[(imageIndex + 1) % photos.length]}
+          prevSrc={photos[(imageIndex + photos.length - 1) % photos.length]}
+          onCloseRequest={() => setIsOpen(false)}
+          onMovePrevRequest={() =>
+            setImageIndex((imageIndex + photos.length - 1) % photos.length)
+          }
+          onMoveNextRequest={() =>
+            setImageIndex((imageIndex + 1) % photos.length)
+          }
         />
-      </Modal>
+      )}
     </>
   )
 }

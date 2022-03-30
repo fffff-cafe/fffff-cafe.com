@@ -49,6 +49,10 @@ const SystemSection = (): ReactElement => {
             </tr>
           </tbody>
         </Table>
+        <p>
+          クレジットカード・電子マネー（交通系IC、QUIC
+          Pay、iD、PayPay）のみの決済になります。（現金不可）
+        </p>
       </Section>
     </>
   )

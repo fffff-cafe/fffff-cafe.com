@@ -7,12 +7,16 @@ const Header = Styled.header`
   background-color: ${primaryColorHex};
   box-sizing: border-box;
   color: #eee;
-  display: flex;
-  justify-content: space-between;
   padding: 1rem;
   position: fixed;
   top: 0;
   width: 100%;
+  div.content {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    max-width: min(840px, 100%);
+  }
   h1 {
     font-size: 1rem;
     margin: 0;
@@ -37,21 +41,23 @@ const HeaderSection = (): ReactElement => {
   return (
     <>
       <Header>
-        <h1>FFFFF Cafe</h1>
-        <nav>
-          <ul>
-            <li>
-              <ScrollIntoView selector="#calendar">
-                <>カレンダー</>
-              </ScrollIntoView>
-            </li>
-            <li>
-              <ScrollIntoView selector="#access">
-                <>アクセス</>
-              </ScrollIntoView>
-            </li>
-          </ul>
-        </nav>
+        <div className="content">
+          <h1>FFFFF Cafe</h1>
+          <nav>
+            <ul>
+              <li>
+                <ScrollIntoView selector="#calendar">
+                  <>カレンダー</>
+                </ScrollIntoView>
+              </li>
+              <li>
+                <ScrollIntoView selector="#access">
+                  <>アクセス</>
+                </ScrollIntoView>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </Header>
     </>
   )

@@ -9,7 +9,7 @@ const MenuSection = (): ReactElement => {
         <iframe
           src="//reload-co-jp.github.io/cookban/"
           title="menu"
-          width={600}
+          width={800}
           height={600}
         ></iframe>
       </Section>

@@ -5,7 +5,7 @@ import Styled from "styled-components"
 const Table = Styled.table`
   border-collapse: collapse;
   margin: 1rem auto;
-  max-width: 640px;
+  max-width: 840px;
   width: 100%;
   tr {
     border-bottom: solid 1px #f0f0f0;

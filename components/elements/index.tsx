@@ -17,7 +17,7 @@ export const Section = Styled.section`
   line-height: 1.5;
   padding: 2rem 1rem;
   text-align: center;
-  iframe {
+  > iframe {
     display: block;
     margin: auto;
     max-height: 66vh;

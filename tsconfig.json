@@ -19,6 +19,7 @@
     "tsBuildInfoFile": ".tsbuildinfo"
   },
   "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "sitemap.config.js"],
   "files": ["./@types/index.d.ts"]
 }
+

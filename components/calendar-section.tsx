@@ -7,7 +7,7 @@ import Styled from "styled-components"
 
 const baseUrl = "https://www.googleapis.com/calendar/v3/calendars"
 const calendarId = "dbofsjce5m94lubjbq28bhn2o8@group.calendar.google.com"
-const key = process.env.NEXT_PUBLIC_GOOGLE_API_KEY
+const key = "AIzaSyAejTOmT5qkL3uTEYBA1eQup2WVbD7pjPY"
 
 const Table = Styled.table`
   margin: auto;

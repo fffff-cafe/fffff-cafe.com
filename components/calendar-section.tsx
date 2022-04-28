@@ -30,13 +30,15 @@ const CalendarSection = (): ReactElement => {
           key,
           showDeleted: true,
           timeMin: dayjs().format("YYYY-MM-DDT00:00:00[Z]"),
-          timeMax: dayjs().add(2, "week").format("YYYY-MM-DDT00:00:00[Z]"),
+          timeMax: dayjs().add(3, "week").format("YYYY-MM-DDT00:00:00[Z]"),
           orderBy: "startTime",
           singleEvents: true,
         },
       }
     )
-    setEvents(data.items)
+    setEvents(
+      data.items.filter((item) => item.status == "confirmed").slice(0, 10)
+    )
   }
   useEffect(() => {
     fetchEvents()

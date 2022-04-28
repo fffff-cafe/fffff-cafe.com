@@ -11,7 +11,7 @@ export type GoogleCalendarEventItem = {
   kind: string
   etag: string
   id: string
-  status: "confirmed"
+  status: "confirmed" | "tentative" | "cancelled"
   htmlLink: string
   created: string
   updated: string

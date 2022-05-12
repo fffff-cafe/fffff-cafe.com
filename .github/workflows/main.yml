@@ -39,3 +39,13 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
           cname: fffff-cafe.com
+
+      - name: Notify
+        uses: 8398a7/action-slack@v3.8.0
+        with:
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,action,job,took,eventName,ref,workflow # 追加
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()

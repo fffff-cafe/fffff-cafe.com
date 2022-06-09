@@ -24,6 +24,7 @@ const App = ({ Component, pageProps }: AppProps): ReactElement => {
           property="og:image"
           content="https://fffff-cafe.com/images/cover.jpg"
         />
+        <link rel="canonical" href="https://fffff-cafe.com" />
         <title>{title}</title>
       </Head>
       <Component {...pageProps} />

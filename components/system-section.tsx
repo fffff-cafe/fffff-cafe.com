@@ -20,7 +20,11 @@ const SystemSection = (): ReactElement => {
     <>
       <Section>
         <SectionTitle>FFFFF Cafeの利用について</SectionTitle>
-        <p>コーヒー1杯500円~で利用できる作業のできるカフェです。</p>
+        <p>
+          コーヒー1杯500円~で利用できる作業のできるカフェです（ドロップイン利用のコワーキングスペース）。
+          <br />
+          ドリンクの注文はお願いしていますが、食事の持ち込み自由です。
+        </p>
         <Table>
           <tbody>
             <tr>
@@ -45,7 +49,11 @@ const SystemSection = (): ReactElement => {
             </tr>
             <tr>
               <th>会議室利用</th>
-              <td>応相談</td>
+              <td>500円 / 1h（3F 1~2名）</td>
+            </tr>
+            <tr>
+              <th>貸切利用</th>
+              <td>3h: 4,000円 / 1d: 10,000円</td>
             </tr>
           </tbody>
         </Table>

@@ -7,7 +7,8 @@ const ConceptSection = (): ReactElement => {
       <Section>
         <p>
           株式会社リロードが運営する、全席電源・Wi-Fiを完備した作業できるカフェ。
-          <br />
+        </p>
+        <p>
           「仕事をしやすく、それでいて遊びやすいような場所」を目指し、神田でITエンジニアたちが運営中。
         </p>
       </Section>

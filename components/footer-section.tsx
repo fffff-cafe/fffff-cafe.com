@@ -6,6 +6,14 @@ background: #444;
 color: #f0f0f0;
 padding: 4rem 0;
 text-align: center;
+
+p {
+  margin-bottom: .5rem;
+  a {
+    color: #d0d0d0;
+    text-decoration: none;
+  }
+}
 `
 
 const FooterSection = (): ReactElement => {
@@ -13,7 +21,15 @@ const FooterSection = (): ReactElement => {
     <>
       <Footer>
         <section>
-          <p>&copy; FFFFF Cafe</p>
+          <p>FFFFF Cafe &copy; 2022</p>
+          <p>
+            <small>
+              Powered by &nbsp;
+              <a href="//reload.co.jp" target="_blank" rel="noreferrer">
+                Reload, Inc.
+              </a>
+            </small>
+          </p>
         </section>
       </Footer>
     </>

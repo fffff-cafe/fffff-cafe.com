@@ -2,7 +2,7 @@ import React, { ReactElement } from "react"
 import { Section, SectionTitle } from "components/elements"
 import Styled from "styled-components"
 const MemberCard = Styled.div`
-  background-color: #444;
+  background-color: #111;
   border-radius: 3px;
   border: solid 1px white;
   box-shadow: 3px 3px 3px #222;

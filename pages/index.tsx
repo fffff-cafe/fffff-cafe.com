@@ -9,6 +9,7 @@ import MenuSection from "components/menu-section"
 import MoodSection from "components/mood-section"
 import NowSection from "components/now-section"
 import SystemSection from "components/system-section"
+import MemberSection from "components/member-section"
 
 const IndexPage = (): React.ReactElement => {
   return (
@@ -19,6 +20,7 @@ const IndexPage = (): React.ReactElement => {
       <MoodSection />
       <CalendarSection />
       <MenuSection />
+      <MemberSection />
       <NowSection />
       <AccessSection />
       <FooterSection />

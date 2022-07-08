@@ -10,6 +10,7 @@ import MoodSection from "components/mood-section"
 import NowSection from "components/now-section"
 import SystemSection from "components/system-section"
 import MemberSection from "components/member-section"
+import ContactSection from "components/contact-section"
 
 const IndexPage = (): React.ReactElement => {
   return (
@@ -23,6 +24,7 @@ const IndexPage = (): React.ReactElement => {
       <MemberSection />
       <NowSection />
       <AccessSection />
+      <ContactSection />
       <FooterSection />
       <Header />
     </>

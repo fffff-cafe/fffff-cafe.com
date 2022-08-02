@@ -79,6 +79,7 @@ const EventBlock = Styled.a`
 
 const CalendarSection = (): ReactElement => {
   const [events, setEvents] = useState<GoogleCalendarEventItem[]>()
+  const [nowDay, setNowDay] = useState<dayjs.Dayjs>(dayjs(new Date()))
   const fetchEvents = async () => {
     const { data } = await axios.get<GoogleCalendarEventResponse>(
       `${baseUrl}/${calendarId}/events`,
@@ -97,7 +98,9 @@ const CalendarSection = (): ReactElement => {
   }
   useEffect(() => {
     fetchEvents()
+    setNowDay(dayjs(new Date()))
   }, [])
+
   return (
     <>
       <Section>
@@ -108,14 +111,14 @@ const CalendarSection = (): ReactElement => {
             .map((_, i) => (
               <DaySection
                 key={i}
-                className={i === 0 ? `is-offset-${dayjs().day()}` : undefined}
+                className={i === 0 ? `is-offset-${nowDay.day()}` : undefined}
               >
-                <DayTitle>{dayjs().add(i, "day").format("M/D")}</DayTitle>
+                <DayTitle>{nowDay.add(i, "day").format("M/D")}</DayTitle>
                 {events
                   ?.filter(
                     (e) =>
                       dayjs(e.start.dateTime).format("M/D") ===
-                      dayjs().add(i, "day").format("M/D")
+                      nowDay.add(i, "day").format("M/D")
                   )
                   .map((event) => (
                     <EventBlock

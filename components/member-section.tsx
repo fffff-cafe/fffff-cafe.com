@@ -52,28 +52,6 @@ const MemberSection = (): ReactElement => {
             </a>
           </p>
         </MemberCard>
-        <MemberCard>
-          <p>
-            <u>@hanamizuno</u>
-          </p>
-          <p>
-            フリーのソフトウェアエンジニア・編集者。登山や旅行、散歩が趣味。
-            <br />
-            好きな言語はPythonとElixir。
-          </p>
-          <p className="links">
-            <a
-              href="//twitter.com/hanamizuno_"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Twitter
-            </a>
-            <a href="//github.com/hanamizuno" target="_blank" rel="noreferrer">
-              GitHub
-            </a>
-          </p>
-        </MemberCard>
       </Section>
     </>
   )

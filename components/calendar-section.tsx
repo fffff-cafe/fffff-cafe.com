@@ -4,6 +4,8 @@ import axios from "axios"
 import { GoogleCalendarEventResponse, GoogleCalendarEventItem } from "@types"
 import dayjs from "dayjs"
 import Styled from "styled-components"
+import Modal from "react-modal"
+import { sectionBackgroundColorHex, primaryColorHex } from "utils/constant"
 
 const baseUrl = "https://www.googleapis.com/calendar/v3/calendars"
 const calendarId = "dbofsjce5m94lubjbq28bhn2o8@group.calendar.google.com"
@@ -59,13 +61,19 @@ const DayTitle = Styled.div`
 `
 
 const EventBlock = Styled.a`
-  background-color: #555;
+  background-color: #777;
   border-radius: .25rem;
   color: #fff;
   display: block;
   font-size: .75rem;
   padding: .25rem .5rem;
   text-decoration: none;
+
+  &.has-detailed {
+    background-color: #444;
+    border: solid 1px ${primaryColorHex};
+    cursor: pointer;
+  }
 
   &:not(:last-child) {
     margin-bottom: .25rem;
@@ -77,9 +85,23 @@ const EventBlock = Styled.a`
   }
 `
 
+const EventModalContent = Styled.div`
+  color: #d0d0d0;
+  h2 {
+    color: white;
+  }
+  pre {
+    a {
+      color: ${primaryColorHex};
+    }
+  }
+`
+
 const CalendarSection = (): ReactElement => {
   const [events, setEvents] = useState<GoogleCalendarEventItem[]>()
   const [nowDay, setNowDay] = useState<dayjs.Dayjs>(dayjs(new Date()))
+  const [selectedEvent, setSelectedEvent] =
+    React.useState<GoogleCalendarEventItem | null>(null)
   const fetchEvents = async () => {
     const { data } = await axios.get<GoogleCalendarEventResponse>(
       `${baseUrl}/${calendarId}/events`,
@@ -123,8 +145,10 @@ const CalendarSection = (): ReactElement => {
                   .map((event) => (
                     <EventBlock
                       key={event.id}
-                      href={event.htmlLink}
-                      target="_blank"
+                      onClick={() =>
+                        event.description && setSelectedEvent(event)
+                      }
+                      className={event.description && "has-detailed"}
                     >
                       <time>
                         {dayjs(event.start.dateTime).format("HH:mm")}-
@@ -136,6 +160,46 @@ const CalendarSection = (): ReactElement => {
               </DaySection>
             ))}
         </CalendarTable>
+        {selectedEvent && (
+          <Modal
+            isOpen={!!selectedEvent}
+            onRequestClose={() => setSelectedEvent(null)}
+            contentLabel="Event"
+            style={{
+              overlay: {
+                backgroundColor: "rgba(0, 0, 0, 0.75)",
+              },
+              content: {
+                backgroundColor: sectionBackgroundColorHex,
+                margin: "auto",
+                maxWidth: "800px",
+              },
+            }}
+          >
+            <EventModalContent>
+              <h2>{selectedEvent.summary}</h2>
+              <p>
+                <time>
+                  {dayjs(selectedEvent.start.dateTime).format(
+                    "MM/DD (ddd) HH:mm"
+                  )}
+                  -{dayjs(selectedEvent.end.dateTime).format("HH:mm")}
+                </time>
+              </p>
+              <br />
+              <p>
+                {selectedEvent.description && (
+                  <pre
+                    style={{ whiteSpace: "pre-wrap", fontSize: ".75rem" }}
+                    dangerouslySetInnerHTML={{
+                      __html: selectedEvent.description,
+                    }}
+                  />
+                )}
+              </p>
+            </EventModalContent>
+          </Modal>
+        )}
       </Section>
     </>
   )

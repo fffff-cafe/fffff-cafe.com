@@ -21,11 +21,11 @@ export const Section = Styled.section`
     display: block;
     margin: auto;
     max-height: 66vh;
-    max-width: min(800px, 100%);
+    max-width: min(960px, 100%);
   }
   p {
     margin: auto;
-    max-width: 840px;
+    max-width: 960px;
     text-align: left;
   }
 `

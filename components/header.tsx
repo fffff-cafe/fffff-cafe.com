@@ -15,7 +15,7 @@ const Header = Styled.header`
     display: flex;
     justify-content: space-between;
     margin: auto;
-    max-width: min(840px, 100%);
+    max-width: min(960px, 100%);
   }
   h1 {
     font-size: 1rem;

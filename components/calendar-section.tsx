@@ -3,6 +3,7 @@ import { Section, SectionTitle } from "components/elements"
 import axios from "axios"
 import { GoogleCalendarEventResponse, GoogleCalendarEventItem } from "@types"
 import dayjs from "dayjs"
+import timezone from "dayjs/plugin/timezone"
 import Styled from "styled-components"
 import Modal from "react-modal"
 import { sectionBackgroundColorHex, primaryColorHex } from "utils/constant"
@@ -15,7 +16,7 @@ const CalendarTable = Styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: auto;
-  max-width: 1000px;
+  max-width: 960px;
 `
 
 const DaySection = Styled.div`
@@ -61,7 +62,7 @@ const DayTitle = Styled.div`
 `
 
 const EventBlock = Styled.a`
-  background-color: #777;
+  background-color: #444;
   border-radius: .25rem;
   color: #fff;
   display: block;
@@ -70,8 +71,7 @@ const EventBlock = Styled.a`
   text-decoration: none;
 
   &.has-detailed {
-    background-color: #444;
-    border: solid 1px ${primaryColorHex};
+    background-color: ${primaryColorHex};
     cursor: pointer;
   }
 
@@ -102,25 +102,28 @@ const CalendarSection = (): ReactElement => {
   const [nowDay, setNowDay] = useState<dayjs.Dayjs>(dayjs(new Date()))
   const [selectedEvent, setSelectedEvent] =
     React.useState<GoogleCalendarEventItem | null>(null)
-  const fetchEvents = async () => {
-    const { data } = await axios.get<GoogleCalendarEventResponse>(
-      `${baseUrl}/${calendarId}/events`,
-      {
-        params: {
-          key,
-          showDeleted: true,
-          timeMin: dayjs().format("YYYY-MM-DDT00:00:00[Z]"),
-          timeMax: dayjs().add(30, "day").format("YYYY-MM-DDT00:00:00[Z]"),
-          orderBy: "startTime",
-          singleEvents: true,
-        },
-      }
-    )
-    setEvents(data.items.filter((item) => item.status == "confirmed"))
-  }
+
   useEffect(() => {
-    fetchEvents()
-    setNowDay(dayjs(new Date()))
+    const fetchEvents = async (nowDay: dayjs.Dayjs) => {
+      const { data } = await axios.get<GoogleCalendarEventResponse>(
+        `${baseUrl}/${calendarId}/events`,
+        {
+          params: {
+            key,
+            showDeleted: true,
+            timeMin: nowDay.format("YYYY-MM-DDT00:00:00[Z]"),
+            timeMax: nowDay.add(30, "day").format("YYYY-MM-DDT00:00:00[Z]"),
+            orderBy: "startTime",
+            singleEvents: true,
+          },
+        }
+      )
+      setEvents(data.items.filter((item) => item.status == "confirmed"))
+    }
+    const now = dayjs(new Date())
+    fetchEvents(now)
+    dayjs.extend(timezone)
+    setNowDay(now)
   }, [])
 
   return (

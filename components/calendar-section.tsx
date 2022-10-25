@@ -96,10 +96,11 @@ const EventModalContent = Styled.div`
     }
   }
 `
+dayjs.extend(timezone)
 
 const CalendarSection = (): ReactElement => {
   const [events, setEvents] = useState<GoogleCalendarEventItem[]>()
-  const [nowDay, setNowDay] = useState<dayjs.Dayjs>(dayjs(new Date()))
+  const nowDay = dayjs(new Date())
   const [selectedEvent, setSelectedEvent] =
     React.useState<GoogleCalendarEventItem | null>(null)
 
@@ -122,9 +123,11 @@ const CalendarSection = (): ReactElement => {
     }
     const now = dayjs(new Date())
     fetchEvents(now)
-    dayjs.extend(timezone)
-    setNowDay(now)
   }, [])
+
+  const sectionOffsetClass = (sectionIndex: number) => {
+    return sectionIndex === 0 ? `is-offset-${new Date().getDay()}` : undefined
+  }
 
   return (
     <>
@@ -134,10 +137,7 @@ const CalendarSection = (): ReactElement => {
           {Array(30)
             .fill(null)
             .map((_, i) => (
-              <DaySection
-                key={i}
-                className={i === 0 ? `is-offset-${nowDay.day()}` : undefined}
-              >
+              <DaySection key={i} className={sectionOffsetClass(i)}>
                 <DayTitle>{nowDay.add(i, "day").format("M/D")}</DayTitle>
                 {events
                   ?.filter(

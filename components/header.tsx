@@ -2,6 +2,8 @@ import React, { ReactElement } from "react"
 import { primaryColorHex } from "utils/constant"
 import Styled from "styled-components"
 import ScrollIntoView from "react-scroll-into-view"
+import { ExternalLink } from "components/elements/link"
+import { GithubIcon } from "components/elements/icon"
 
 const Header = Styled.header`
   background-color: ${primaryColorHex};
@@ -54,6 +56,11 @@ const HeaderSection = (): ReactElement => {
                 <ScrollIntoView selector="#access">
                   <>アクセス</>
                 </ScrollIntoView>
+              </li>
+              <li>
+                <ExternalLink href="//github.com/fffff-cafe/fffff-cafe.com">
+                  <GithubIcon />
+                </ExternalLink>
               </li>
             </ul>
           </nav>

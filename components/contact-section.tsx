@@ -1,23 +1,6 @@
 import React, { ReactElement } from "react"
 import { Section, SectionTitle } from "components/elements"
-
-const Link: React.FC<
-  React.DetailedHTMLProps<
-    React.AnchorHTMLAttributes<HTMLAnchorElement>,
-    HTMLAnchorElement
-  >
-> = ({ children, href }) => {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-      style={{ color: "white", margin: "0.25rem" }}
-    >
-      {children}
-    </a>
-  )
-}
+import { ExternalLink } from "components/elements/link"
 
 const ContactSection = (): ReactElement => {
   return (
@@ -25,14 +8,14 @@ const ContactSection = (): ReactElement => {
       <Section style={{ textAlign: "center" }}>
         <SectionTitle>お問い合わせ</SectionTitle>
         <div>
-          <Link href="//twitter.com/fffff_cafe">Twitter</Link>
+          <ExternalLink href="//twitter.com/fffff_cafe">Twitter</ExternalLink>
           のDMからご連絡ください。
         </div>
         <div>
           イベントの連絡については
-          <Link href="//join.slack.com/t/fffff-81d6773/shared_invite/zt-1d2ozux7o-F2O5pNC5vmXzt1Allox2xQ">
+          <ExternalLink href="//join.slack.com/t/fffff-81d6773/shared_invite/zt-1d2ozux7o-F2O5pNC5vmXzt1Allox2xQ">
             こちらのSlack
-          </Link>
+          </ExternalLink>
           からも受け付けています。
         </div>
       </Section>

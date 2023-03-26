@@ -21,7 +21,7 @@ const FooterSection = (): ReactElement => {
     <>
       <Footer>
         <section>
-          <p>FFFFF Cafe &copy; 2022</p>
+          <p>FFFFF Cafe &copy; 2022-2023</p>
           <p>
             <small>
               Powered by &nbsp;

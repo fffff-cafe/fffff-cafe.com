@@ -29,7 +29,7 @@ const SystemSection = (): ReactElement => {
           <tbody>
             <tr>
               <th>営業時間</th>
-              <td>平日 14:00 ~ 21:00 (L.O. 20:00)</td>
+              <td>平日 15:00 ~ 21:00 (L.O. 20:00)</td>
             </tr>
             <tr>
               <th>席数</th>

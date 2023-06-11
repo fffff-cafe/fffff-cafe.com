@@ -59,6 +59,10 @@ const SystemSection = (): ReactElement => {
               <th>貸切利用 ※4</th>
               <td>3h: 4,000円 / 1d: 10,000円</td>
             </tr>
+            <tr>
+              <th>定期利用</th>
+              <td>応相談</td>
+            </tr>
           </tbody>
         </Table>
         <p>

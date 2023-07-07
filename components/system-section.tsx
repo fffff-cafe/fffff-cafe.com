@@ -11,6 +11,9 @@ const Table = Styled.table`
     border-bottom: solid 1px #f0f0f0;
     td {
       padding: .5rem;
+      p {
+        text-align: center;
+      }
     }
   }
 `
@@ -57,7 +60,11 @@ const SystemSection = (): ReactElement => {
             </tr>
             <tr>
               <th>貸切利用 ※4</th>
-              <td>3h: 4,000円 / 1d: 10,000円</td>
+              <td>
+                <p>3hours: 4,000円</p>
+                <p>6hours: 6,000円</p>
+                <p>1day: 10,000円</p>
+              </td>
             </tr>
             <tr>
               <th>定期利用</th>

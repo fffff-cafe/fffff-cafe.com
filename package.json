@@ -29,7 +29,7 @@
     "@fontsource/noto-sans-jp": "^4.5.12",
     "axios": "^1.4.0",
     "dayjs": "^1.11.7",
-    "next": "^13.4.1",
+    "next": "^13.5.0",
     "next-sitemap": "^4.0.9",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",

@@ -27,7 +27,7 @@
   "homepage": "https://github.com/fffff-cafe/fffff-cafe.com#readme",
   "dependencies": {
     "@fontsource/noto-sans-jp": "^4.5.12",
-    "axios": "^1.4.0",
+    "axios": "^1.6.0",
     "dayjs": "^1.11.7",
     "next": "^13.5.0",
     "next-sitemap": "^4.0.9",

@@ -4,7 +4,7 @@
   "description": "https://github.com/fffff-cafe/fffff-cafe.com/",
   "main": "index.js",
   "scripts": {
-    "build": "NODE_ENV=production next build && next export && next-sitemap --config sitemap.config.js",
+    "build": "NODE_ENV=production next build && next-sitemap --config sitemap.config.js",
     "dev": "next -p 3333",
     "lint": "eslint ./**/*.{ts,tsx}",
     "prepare": "husky install"

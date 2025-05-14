@@ -3,9 +3,9 @@ import Head from "next/head"
 import { AppProps } from "next/app"
 import "assets/styles.scss"
 
-const title = "FFFFF Cafe - 作業できるカフェ@神田"
+const title = "FFFFF Cafe - 作業できるカフェ@秋葉原"
 const description =
-  "神田駅4分・秋葉原駅10分にある作業のできる電源・Wi-Fi完備の喫茶店です。1ドリンク500円からご利用できます。"
+  "秋葉原駅3分にある作業のできる電源・Wi-Fi完備の喫茶店です。1ドリンク500円からご利用できます。"
 const App = ({ Component, pageProps }: AppProps): ReactElement => {
   return (
     <>

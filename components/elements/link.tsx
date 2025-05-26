@@ -5,13 +5,13 @@ export const ExternalLink: React.FC<
     React.AnchorHTMLAttributes<HTMLAnchorElement>,
     HTMLAnchorElement
   >
-> = ({ children, href }) => {
+> = ({ children, ...props }) => {
   return (
     <a
-      href={href}
       target="_blank"
       rel="noreferrer"
       style={{ color: "white", margin: "0.25rem" }}
+      {...props}
     >
       {children}
     </a>

@@ -24,9 +24,9 @@ const SystemSection = (): ReactElement => {
       <Section>
         <SectionTitle>FFFFF Cafeの利用について</SectionTitle>
         <p>
-          コーヒー1杯500円~で利用できる作業のできるカフェです（ドロップイン利用のコワーキングスペース）。
+          500円~で利用できる作業のできるカフェです（ドロップイン利用のコワーキングスペース）。
           <br />
-          ご利用の際は必ずドリンクの注文をお願いします。食事の持ち込みは自由です。
+          食事の持ち込みは自由です。
         </p>
         <Table>
           <tbody>
@@ -36,7 +36,7 @@ const SystemSection = (): ReactElement => {
             </tr>
             <tr>
               <th>席数</th>
-              <td>10席</td>
+              <td>20席</td>
             </tr>
             <tr>
               <th>電源</th>
@@ -51,19 +51,11 @@ const SystemSection = (): ReactElement => {
               <td>充電ケーブル、モニター、ホワイトボード</td>
             </tr>
             <tr>
-              <th>個室利用 ※2</th>
-              <td>1h: 500円</td>
-            </tr>
-            <tr>
-              <th>会議室利用 ※3</th>
-              <td>1h: 1000円</td>
-            </tr>
-            <tr>
-              <th>貸切利用 ※4</th>
+              <th>貸切利用 ※2</th>
               <td>
-                <p>3hours: 4,000円</p>
-                <p>6hours: 6,000円</p>
-                <p>1day: 10,000円</p>
+                <p>3hours: 8,000円</p>
+                <p>6hours: 12,000円</p>
+                <p>1day: 20,000円</p>
               </td>
             </tr>
             <tr>
@@ -78,10 +70,6 @@ const SystemSection = (): ReactElement => {
         </p>
         <p>
           ※1 数量限定 先着順
-          <br />
-          ※2 別室（3F）の貸切利用 1〜2名 1組のみ 先着順
-          <br />
-          ※3 別室（2F）の貸切利用 6名席 1組のみ 先着順・要予約
           <br />
           ※4 カフェの貸切利用 3営業日前までにご連絡ください
         </p>

@@ -16,11 +16,16 @@ jobs:
         with:
           node-version: "21.x"
 
+      - name: setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
       - name: Install
-        run: yarn
+        run: pnpm install
 
       - name: Build
-        run: yarn build
+        run: pnpm build
 
       - name: Add nojekyll
         run: touch ./out/.nojekyll

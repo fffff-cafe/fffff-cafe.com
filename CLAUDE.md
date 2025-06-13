@@ -5,9 +5,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ### Development
-- `yarn dev` - Start development server on port 3333
-- `yarn build` - Build for production (generates static export)
-- `yarn lint` - Run ESLint on TypeScript and TSX files
+- `pnpm dev` - Start development server on port 3333
+- `pnpm build` - Build for production (generates static export)
+- `pnpm lint` - Run ESLint on TypeScript and TSX files
 
 ### Build Process
 This is a Next.js project configured for static export (`output: "export"` in next.config.js). The build process generates a static site in the `out/` directory and includes sitemap generation.

@@ -1,30 +1,5 @@
 import React, { ReactElement } from "react"
 import { Section, SectionTitle } from "components/elements"
-import Styled from "styled-components"
-const MemberCard = Styled.div`
-  background-color: #111;
-  border-radius: 3px;
-  border: solid 1px white;
-  box-shadow: 3px 3px 3px #222;
-  margin: .5rem auto;
-  max-width: 600px;
-  padding: 1rem;
-
-  &:hover {
-    background-color: #333;
-  }
-
-  a {
-    color: white;
-  }
-
-  .links {
-    a {
-      display: inline-block;
-      margin: 0 .25rem;
-    }
-  }
-`
 
 const MemberSection = (): ReactElement => {
   return (
@@ -32,9 +7,32 @@ const MemberSection = (): ReactElement => {
       <Section>
         <SectionTitle>メンバー</SectionTitle>
         <p style={{ textAlign: "center" }}>運営メンバーについて</p>
-        <MemberCard>
+        <div
+          style={{
+            backgroundColor: "#111",
+            borderRadius: "3px",
+            border: "solid 1px white",
+            boxShadow: "3px 3px 3px #222",
+            margin: ".5rem auto",
+            maxWidth: "600px",
+            padding: "1rem",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = "#333"
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = "#111"
+          }}
+        >
           <p>
-            <a href="//kixixixixi.com" target="_blank" rel="noreferrer">
+            <a
+              href="//kixixixixi.com"
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                color: "white",
+              }}
+            >
               @kixixixixi
             </a>
           </p>
@@ -43,15 +41,33 @@ const MemberSection = (): ReactElement => {
             <br />
             JavaScript, Perl, Python, Ruby, Elixir, Swift, Kotlin, Nim
           </p>
-          <p className="links">
-            <a href="//twitter.com/kixixixixi" target="_blank" rel="noreferrer">
+          <p>
+            <a
+              href="//twitter.com/kixixixixi"
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                color: "white",
+                display: "inline-block",
+                margin: "0 .25rem",
+              }}
+            >
               Twitter
             </a>
-            <a href="//github.com/kixixixixi" target="_blank" rel="noreferrer">
+            <a
+              href="//github.com/kixixixixi"
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                color: "white",
+                display: "inline-block",
+                margin: "0 .25rem",
+              }}
+            >
               GitHub
             </a>
           </p>
-        </MemberCard>
+        </div>
       </Section>
     </>
   )

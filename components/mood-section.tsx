@@ -1,33 +1,7 @@
 import React, { ReactElement, useState } from "react"
 import { Section, SectionTitle } from "components/elements"
-import Styled from "styled-components"
 import LightBox from "react-image-lightbox"
 import "react-image-lightbox/style.css"
-
-const PhotoGrid = Styled.div`
-align-items: center;
-display: flex;
-flex-direction: row;
-flex-wrap: wrap;
-justify-content: space-around;
-margin: auto;
-max-width: 640px;
-
-.item {
-  aspect-ratio: 1;
-  background-position: center;
-  background-size: cover;
-  cursor: pointer;
-  width: min(33%, 33vw);
-  &:not(:hover)::after {
-    background-color: rgba(0, 0, 0, 0.3);
-    content: "";
-    display: block;
-    height: 100%;
-    width: 100%;
-  }
-}
-`
 
 const photos = Array(9)
   .fill(null)
@@ -44,19 +18,57 @@ const MoodSection = (): ReactElement => {
     <>
       <Section>
         <SectionTitle>写真</SectionTitle>
-        <PhotoGrid>
+        <div
+          style={{
+            alignItems: "center",
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "space-around",
+            margin: "auto",
+            maxWidth: "640px",
+          }}
+        >
           {photos.map((photo, i) => (
             <div
               key={i}
-              className="item"
               onClick={() => openModal(i)}
               role="button"
               tabIndex={i}
               aria-hidden="true"
-              style={{ backgroundImage: `url("${photo}")` }}
-            ></div>
+              style={{
+                aspectRatio: 1,
+                backgroundImage: `url("${photo}")`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                cursor: "pointer",
+                width: "min(33%, 33vw)",
+                position: "relative",
+              }}
+              onMouseEnter={(e) => {
+                const after = e.target as HTMLElement
+                after.style.setProperty("--hover", "1")
+              }}
+              onMouseLeave={(e) => {
+                const after = e.target as HTMLElement
+                after.style.setProperty("--hover", "0")
+              }}
+            >
+              <div
+                style={{
+                  backgroundColor: "rgba(0, 0, 0, 0.3)",
+                  height: "100%",
+                  width: "100%",
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  opacity: "var(--hover, 1)",
+                  transition: "opacity 0.2s",
+                }}
+              />
+            </div>
           ))}
-        </PhotoGrid>
+        </div>
       </Section>
       {isOpen && (
         <LightBox

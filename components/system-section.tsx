@@ -1,22 +1,5 @@
 import React, { ReactElement } from "react"
 import { Section, SectionTitle } from "components/elements"
-import Styled from "styled-components"
-
-const Table = Styled.table`
-  border-collapse: collapse;
-  margin: 1rem auto;
-  max-width: 840px;
-  width: 100%;
-  tr {
-    border-bottom: solid 1px #f0f0f0;
-    td {
-      padding: .5rem;
-      p {
-        text-align: center;
-      }
-    }
-  }
-`
 
 const SystemSection = (): ReactElement => {
   return (
@@ -28,42 +11,105 @@ const SystemSection = (): ReactElement => {
           <br />
           食事の持ち込みは自由です。
         </p>
-        <Table>
+        <table
+          style={{
+            borderCollapse: "collapse",
+            margin: "1rem auto",
+            maxWidth: "840px",
+            width: "100%",
+          }}
+        >
           <tbody>
-            <tr>
+            <tr
+              style={{
+                borderBottom: "solid 1px #f0f0f0",
+              }}
+            >
               <th>営業時間</th>
-              <td>平日 15:00 ~ 21:00 (L.O. 20:00)</td>
+              <td
+                style={{
+                  padding: ".5rem",
+                }}
+              >平日 15:00 ~ 21:00 (L.O. 20:00)</td>
             </tr>
-            <tr>
+            <tr
+              style={{
+                borderBottom: "solid 1px #f0f0f0",
+              }}
+            >
               <th>席数</th>
-              <td>20席</td>
+              <td
+                style={{
+                  padding: ".5rem",
+                }}
+              >20席</td>
             </tr>
-            <tr>
+            <tr
+              style={{
+                borderBottom: "solid 1px #f0f0f0",
+              }}
+            >
               <th>電源</th>
-              <td>全席完備</td>
+              <td
+                style={{
+                  padding: ".5rem",
+                }}
+              >全席完備</td>
             </tr>
-            <tr>
+            <tr
+              style={{
+                borderBottom: "solid 1px #f0f0f0",
+              }}
+            >
               <th>Wi-Fi</th>
-              <td>無料</td>
+              <td
+                style={{
+                  padding: ".5rem",
+                }}
+              >無料</td>
             </tr>
-            <tr>
+            <tr
+              style={{
+                borderBottom: "solid 1px #f0f0f0",
+              }}
+            >
               <th>無料貸出設備 ※1</th>
-              <td>充電ケーブル、モニター、ホワイトボード</td>
+              <td
+                style={{
+                  padding: ".5rem",
+                }}
+              >充電ケーブル、モニター、ホワイトボード</td>
             </tr>
-            <tr>
+            <tr
+              style={{
+                borderBottom: "solid 1px #f0f0f0",
+              }}
+            >
               <th>貸切利用 ※2</th>
-              <td>
+              <td
+                style={{
+                  padding: ".5rem",
+                }}
+              >
                 <p>3hours: 8,000円</p>
                 <p>6hours: 12,000円</p>
                 <p>1day: 20,000円</p>
               </td>
             </tr>
-            <tr>
+            <tr
+              style={{
+                borderBottom: "solid 1px #f0f0f0",
+              }}
+            >
               <th>定期利用</th>
-              <td>応相談</td>
+              <td
+                style={{
+                  padding: ".5rem",
+                }}
+              >応相談</td>
             </tr>
           </tbody>
-        </Table>
+        </table>
         <p>
           クレジットカード・電子マネー（交通系IC、QUIC
           Pay、iD、PayPay）のみの決済になります。（現金不可）

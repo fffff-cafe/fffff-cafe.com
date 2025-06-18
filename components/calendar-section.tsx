@@ -4,98 +4,14 @@ import axios from "axios"
 import { GoogleCalendarEventResponse, GoogleCalendarEventItem } from "@types"
 import dayjs from "dayjs"
 import timezone from "dayjs/plugin/timezone"
-import Styled from "styled-components"
 import Modal from "react-modal"
 import { sectionBackgroundColorHex, primaryColorHex } from "utils/constant"
+import { useWindowWidth } from "utils/hooks/width"
 
 const baseUrl = "https://www.googleapis.com/calendar/v3/calendars"
 const calendarId = "dbofsjce5m94lubjbq28bhn2o8@group.calendar.google.com"
 const key = "AIzaSyAejTOmT5qkL3uTEYBA1eQup2WVbD7pjPY"
 
-const CalendarTable = Styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin: auto;
-  max-width: 960px;
-`
-
-const DaySection = Styled.div`
-  background: #333;
-  box-sizing: border-box;
-  margin: .15rem;
-  min-height: 2rem;
-  padding: 1.25rem .5rem .25rem;
-  position: relative;
-  text-align: left;
-  width: 100%;
-
-
-  @media screen and (min-width: 800px) {
-    width: calc(14.28% - .3rem);
-
-    &.is-offset-1 {
-      margin-left: calc(14.28% + .15rem);
-    }
-    &.is-offset-2 {
-      margin-left: calc(14.28% * 2 + .15rem);
-    }
-    &.is-offset-3 {
-      margin-left: calc(14.28% * 3 + .15rem);
-    }
-    &.is-offset-4 {
-      margin-left: calc(14.28% * 4 + .15rem);
-    }
-    &.is-offset-5 {
-      margin-left: calc(14.28% * 5 + .15rem);
-    }
-    &.is-offset-6 {
-      margin-left: calc(14.28% * 6 + .15rem);
-    }
-  }
-`
-
-const DayTitle = Styled.div`
-  font-size: .5rem;
-  left: .5rem;
-  position: absolute;
-  top: .1rem;
-`
-
-const EventBlock = Styled.a`
-  background-color: #444;
-  border-radius: .25rem;
-  color: #fff;
-  display: block;
-  font-size: .75rem;
-  padding: .25rem .5rem;
-  text-decoration: none;
-
-  &.has-detailed {
-    background-color: ${primaryColorHex};
-    cursor: pointer;
-  }
-
-  &:not(:last-child) {
-    margin-bottom: .25rem;
-  }
-
-  time {
-    display: block;
-    font-size: .5rem;
-  }
-`
-
-const EventModalContent = Styled.div`
-  color: #d0d0d0;
-  h2 {
-    color: white;
-  }
-  pre {
-    a {
-      color: ${primaryColorHex};
-    }
-  }
-`
 dayjs.extend(timezone)
 
 const CalendarSection = (): ReactElement => {
@@ -103,6 +19,7 @@ const CalendarSection = (): ReactElement => {
   const nowDay = dayjs(new Date())
   const [selectedEvent, setSelectedEvent] =
     React.useState<GoogleCalendarEventItem | null>(null)
+  const width = useWindowWidth()
 
   useEffect(() => {
     const fetchEvents = async (nowDay: dayjs.Dayjs) => {
@@ -125,20 +42,52 @@ const CalendarSection = (): ReactElement => {
     fetchEvents(now)
   }, [])
 
-  const sectionOffsetClass = (sectionIndex: number) => {
-    return sectionIndex === 0 ? `is-offset-${new Date().getDay()}` : undefined
-  }
-
   return (
     <>
       <Section>
         <SectionTitle id="calendar">営業カレンダー</SectionTitle>
-        <CalendarTable>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: ".15rem",
+            margin: "auto",
+            maxWidth: "960px",
+            width: "100%",
+          }}
+        >
           {Array(30)
             .fill(null)
             .map((_, i) => (
-              <DaySection key={i} className={sectionOffsetClass(i)}>
-                <DayTitle>{nowDay.add(i, "day").format("M/D")}</DayTitle>
+              <div
+                key={i}
+                style={{
+                  background: "#333",
+                  boxSizing: "border-box",
+                  marginLeft:
+                    width > 800 && i == 0
+                      ? `calc(${14.28 * nowDay.day()}%)`
+                      : undefined,
+                  minHeight: "2rem",
+                  padding: "1.25rem .5rem .25rem",
+                  position: "relative",
+                  width:
+                    width > 800
+                      ? "calc(14.28% - .15rem)"
+                      : "calc(33.33% - .15rem) ",
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: ".5rem",
+                    left: ".5rem",
+                    margin: ".15rem",
+                    position: "absolute",
+                    top: ".1rem",
+                  }}
+                >
+                  {nowDay.add(i, "day").format("M/D ddd")}
+                </div>
                 {events
                   ?.filter(
                     (e) =>
@@ -146,23 +95,51 @@ const CalendarSection = (): ReactElement => {
                       nowDay.add(i, "day").format("M/D")
                   )
                   .map((event) => (
-                    <EventBlock
+                    <div
                       key={event.id}
-                      onClick={() =>
-                        event.description && setSelectedEvent(event)
-                      }
-                      className={event.description && "has-detailed"}
+                      onClick={() => {
+                        if (event.description) {
+                          setSelectedEvent(event)
+                        }
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          if (event.description) {
+                            setSelectedEvent(event)
+                          }
+                        }
+                      }}
+                      role={event.description ? "button" : undefined}
+                      tabIndex={event.description ? 0 : undefined}
+                      style={{
+                        backgroundColor: event.description
+                          ? primaryColorHex
+                          : "#444",
+                        borderRadius: ".25rem",
+                        color: "#fff",
+                        display: "block",
+                        fontSize: ".75rem",
+                        padding: ".25rem .5rem",
+                        textDecoration: "none",
+                        cursor: event.description ? "pointer" : "default",
+                        marginBottom: ".25rem",
+                      }}
                     >
-                      <time>
+                      <time
+                        style={{
+                          display: "block",
+                          fontSize: ".5rem",
+                        }}
+                      >
                         {dayjs(event.start.dateTime).format("HH:mm")}-
                         {dayjs(event.end.dateTime).format("HH:mm")}
                       </time>
                       {event.summary}
-                    </EventBlock>
+                    </div>
                   ))}
-              </DaySection>
+              </div>
             ))}
-        </CalendarTable>
+        </div>
         {selectedEvent && (
           <Modal
             isOpen={!!selectedEvent}
@@ -179,8 +156,18 @@ const CalendarSection = (): ReactElement => {
               },
             }}
           >
-            <EventModalContent>
-              <h2>{selectedEvent.summary}</h2>
+            <div
+              style={{
+                color: "#d0d0d0",
+              }}
+            >
+              <h2
+                style={{
+                  color: "white",
+                }}
+              >
+                {selectedEvent.summary}
+              </h2>
               <p>
                 <time>
                   {dayjs(selectedEvent.start.dateTime).format(
@@ -193,14 +180,20 @@ const CalendarSection = (): ReactElement => {
               <p>
                 {selectedEvent.description && (
                   <pre
-                    style={{ whiteSpace: "pre-wrap", fontSize: ".75rem" }}
+                    style={{
+                      whiteSpace: "pre-wrap",
+                      fontSize: ".75rem",
+                    }}
                     dangerouslySetInnerHTML={{
-                      __html: selectedEvent.description,
+                      __html: selectedEvent.description.replace(
+                        /<a/g,
+                        `<a style="color: ${primaryColorHex}"`
+                      ),
                     }}
                   />
                 )}
               </p>
-            </EventModalContent>
+            </div>
           </Modal>
         )}
       </Section>

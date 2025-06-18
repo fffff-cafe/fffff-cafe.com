@@ -47,7 +47,7 @@ const Layout = ({ children }: { children: React.ReactNode }): ReactElement => {
             />
           </>
         </Head>
-        <body>{children}</body>
+        <body style={{ margin: 0 }}>{children}</body>
       </html>
     </>
   )

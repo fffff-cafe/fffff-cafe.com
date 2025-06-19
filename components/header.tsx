@@ -1,4 +1,7 @@
+"use client"
+
 import React, { ReactElement } from "react"
+import Link from "next/link"
 import { primaryColorHex } from "utils/constant"
 import ScrollIntoView from "react-scroll-into-view"
 import { ExternalLink } from "components/elements/link"
@@ -33,7 +36,7 @@ const HeaderSection = (): ReactElement => {
               margin: 0,
             }}
           >
-            FFFFF Cafe
+            <Link href="/">FFFFF Cafe</Link>
           </h1>
           <nav>
             <ul

@@ -6,3 +6,8 @@
 html {
   background-color: #201810;
 }
+
+a {
+  color: #fff;
+  text-decoration: none;
+}

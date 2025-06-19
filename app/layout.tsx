@@ -1,6 +1,7 @@
 import React, { ReactElement } from "react"
 import Head from "next/head"
 import "assets/styles.css"
+import Header from "components/header"
 
 const GA_TRACKING_ID = "G-6XHCCTWXQQ"
 
@@ -47,7 +48,10 @@ const Layout = ({ children }: { children: React.ReactNode }): ReactElement => {
             />
           </>
         </Head>
-        <body style={{ margin: 0 }}>{children}</body>
+        <body style={{ margin: 0 }}>
+          {children}
+          <Header />
+        </body>
       </html>
     </>
   )

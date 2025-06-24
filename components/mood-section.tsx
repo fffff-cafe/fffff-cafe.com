@@ -1,3 +1,5 @@
+"use client"
+
 import React, { ReactElement, useState } from "react"
 import { Section, SectionTitle } from "components/elements"
 import LightBox from "react-image-lightbox"

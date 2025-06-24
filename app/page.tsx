@@ -1,5 +1,3 @@
-"use client"
-
 import React from "react"
 import AccessSection from "components/access-section"
 import CalendarSection from "components/calendar-section"
@@ -11,8 +9,11 @@ import NowSection from "components/now-section"
 import SystemSection from "components/system-section"
 import MemberSection from "components/member-section"
 import ContactSection from "components/contact-section"
+import { getLatestArticles } from "utils/articles"
 
-const IndexPage = (): React.ReactElement => {
+const IndexPage = async (): Promise<React.ReactElement> => {
+  const latestArticles = await getLatestArticles(3)
+
   return (
     <>
       <CoverImageSection />
@@ -21,7 +22,7 @@ const IndexPage = (): React.ReactElement => {
       <MoodSection />
       <CalendarSection />
       <MemberSection />
-      <NowSection />
+      <NowSection latestArticles={latestArticles} />
       <AccessSection />
       <ContactSection />
       <FooterSection />

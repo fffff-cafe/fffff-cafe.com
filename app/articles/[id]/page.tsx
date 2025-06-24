@@ -5,8 +5,10 @@ import path from "path"
 import matter from "gray-matter"
 import { remark } from "remark"
 import html from "remark-html"
+import Link from "next/link"
 import { Section, SectionTitle } from "components/elements"
 import { Metadata } from "next"
+import { primaryColorHex } from "utils/constant"
 import dayjs from "dayjs"
 
 interface ArticlePageProps {
@@ -91,26 +93,92 @@ const ArticlesIdPage = async ({
       <Section
         style={{
           textAlign: "left",
-          maxWidth: "800px",
+          maxWidth: "900px",
           margin: "0 auto",
           paddingTop: "5rem",
+          minHeight: "100vh",
         }}
       >
-        <SectionTitle>{articleData.title}</SectionTitle>
-        {articleData.date && (
-          <p
-            style={{ color: "#ccc", fontSize: "0.9rem", marginBottom: "2rem" }}
+        <nav style={{ marginBottom: "2rem" }}>
+          <Link
+            href="/articles"
+            style={{
+              color: "#f0f0f0",
+              textDecoration: "none",
+              fontSize: "0.9rem",
+              display: "inline-flex",
+              alignItems: "center",
+              padding: "0.4rem 0.8rem",
+              background: primaryColorHex,
+              borderRadius: "4px",
+              transition: "all 0.3s ease",
+              fontWeight: 500,
+            }}
           >
-            {dayjs(articleData.date).format("YYYY年MM月DD日")}
-          </p>
-        )}
-        <div
-          style={{
-            lineHeight: 1.8,
-            fontSize: "1rem",
-          }}
-          dangerouslySetInnerHTML={{ __html: articleData.content }}
-        />
+            ← 記事一覧に戻る
+          </Link>
+        </nav>
+
+        <article>
+          <header style={{ marginBottom: "3rem", textAlign: "center" }}>
+            <SectionTitle 
+              style={{ 
+                margin: "0 auto 1.5rem", 
+                fontSize: "2.2rem",
+                lineHeight: 1.3,
+                textAlign: "center"
+              }}
+            >
+              {articleData.title}
+            </SectionTitle>
+            {articleData.date && (
+              <time
+                style={{
+                  color: "#aaa",
+                  fontSize: "1rem",
+                  display: "block",
+                  fontWeight: 400,
+                }}
+                dateTime={articleData.date}
+              >
+                {dayjs(articleData.date).format("YYYY年MM月DD日")}
+              </time>
+            )}
+          </header>
+
+          <div
+            style={{
+              background: "rgba(255, 255, 255, 0.02)",
+              border: "1px solid rgba(255, 255, 255, 0.05)",
+              borderRadius: "12px",
+              padding: "3rem",
+              lineHeight: 1.8,
+              fontSize: "1.1rem",
+              color: "#f0f0f0",
+            }}
+            dangerouslySetInnerHTML={{ __html: articleData.content }}
+          />
+        </article>
+
+        <nav style={{ marginTop: "3rem", textAlign: "center" }}>
+          <Link
+            href="/articles"
+            style={{
+              color: "#f0f0f0",
+              textDecoration: "none",
+              fontSize: "1rem",
+              display: "inline-flex",
+              alignItems: "center",
+              padding: "0.6rem 1.5rem",
+              background: primaryColorHex,
+              borderRadius: "6px",
+              transition: "all 0.3s ease",
+              fontWeight: 500,
+            }}
+          >
+            記事一覧に戻る
+          </Link>
+        </nav>
       </Section>
     </>
   )

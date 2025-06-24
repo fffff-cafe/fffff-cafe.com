@@ -1,3 +1,5 @@
+"use client"
+
 import React, { ReactElement, useEffect, useState } from "react"
 import { Section, SectionTitle } from "components/elements"
 import axios from "axios"

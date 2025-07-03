@@ -103,37 +103,6 @@ const NowSection = ({ latestArticles }: NowSectionProps): ReactElement => {
             textAlign: "center",
           }}
         >
-          <h3
-            style={{
-              color: "#f0f0f0",
-              fontSize: "1.2rem",
-              marginBottom: "1.5rem",
-              fontWeight: 600,
-            }}
-          >
-            Twitter / X
-          </h3>
-
-          <div
-            style={{
-              height: "600px",
-              overflow: "hidden",
-              borderRadius: "8px",
-              border: "1px solid rgba(255, 255, 255, 0.1)",
-              marginBottom: "1.5rem",
-            }}
-          >
-            <a
-              className="twitter-timeline"
-              data-theme="dark"
-              data-height="600"
-              data-chrome="noheader nofooter noborders"
-              href="https://twitter.com/fffff_cafe?ref_src=twsrc%5Etfw"
-            >
-              Tweets by fffff_cafe
-            </a>
-          </div>
-
           <div
             style={{
               display: "flex",

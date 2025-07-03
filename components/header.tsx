@@ -2,7 +2,11 @@
 
 import React, { ReactElement } from "react"
 import Link from "next/link"
-import { primaryColorHex } from "utils/constant"
+import {
+  primaryColorHex,
+  techGradientBlue,
+  techAccentCyan,
+} from "utils/constant"
 import ScrollIntoView from "react-scroll-into-view"
 import { ExternalLink } from "components/elements/link"
 import { GithubIcon } from "components/elements/icon"
@@ -12,13 +16,17 @@ const HeaderSection = (): ReactElement => {
     <>
       <header
         style={{
-          backgroundColor: primaryColorHex,
+          background: `linear-gradient(135deg, ${primaryColorHex} 0%, rgba(162, 32, 65, 0.9) 50%, ${techGradientBlue}33 100%)`,
           boxSizing: "border-box",
           color: "#eee",
           padding: "1rem",
           position: "fixed",
           top: 0,
           width: "100%",
+          backdropFilter: "blur(10px)",
+          borderBottom: `1px solid ${techAccentCyan}55`,
+          boxShadow: `0 2px 20px ${techGradientBlue}22`,
+          zIndex: 1000,
         }}
       >
         <div

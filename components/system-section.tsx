@@ -30,7 +30,9 @@ const SystemSection = (): ReactElement => {
                 style={{
                   padding: ".5rem",
                 }}
-              >平日 15:00 ~ 21:00 (L.O. 20:00)</td>
+              >
+                平日 15:00 ~ 21:00 (L.O. 20:00)
+              </td>
             </tr>
             <tr
               style={{
@@ -42,7 +44,9 @@ const SystemSection = (): ReactElement => {
                 style={{
                   padding: ".5rem",
                 }}
-              >20席</td>
+              >
+                20席
+              </td>
             </tr>
             <tr
               style={{
@@ -54,7 +58,9 @@ const SystemSection = (): ReactElement => {
                 style={{
                   padding: ".5rem",
                 }}
-              >全席完備</td>
+              >
+                全席完備
+              </td>
             </tr>
             <tr
               style={{
@@ -66,7 +72,9 @@ const SystemSection = (): ReactElement => {
                 style={{
                   padding: ".5rem",
                 }}
-              >無料</td>
+              >
+                無料
+              </td>
             </tr>
             <tr
               style={{
@@ -78,7 +86,9 @@ const SystemSection = (): ReactElement => {
                 style={{
                   padding: ".5rem",
                 }}
-              >充電ケーブル、モニター、ホワイトボード</td>
+              >
+                充電ケーブル、モニター、ホワイトボード
+              </td>
             </tr>
             <tr
               style={{
@@ -92,6 +102,7 @@ const SystemSection = (): ReactElement => {
                 }}
               >
                 <p>3hours: 8,000円</p>
+                <p>4hours: 10,000円</p>
                 <p>6hours: 12,000円</p>
                 <p>1day: 20,000円</p>
               </td>
@@ -106,7 +117,9 @@ const SystemSection = (): ReactElement => {
                 style={{
                   padding: ".5rem",
                 }}
-              >応相談</td>
+              >
+                応相談
+              </td>
             </tr>
           </tbody>
         </table>

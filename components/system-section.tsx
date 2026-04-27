@@ -101,6 +101,7 @@ const SystemSection = (): ReactElement => {
                   padding: ".5rem",
                 }}
               >
+                <p>2hours: 6,000円</p>
                 <p>3hours: 8,000円</p>
                 <p>4hours: 10,000円</p>
                 <p>6hours: 12,000円</p>

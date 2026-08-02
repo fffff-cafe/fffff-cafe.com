@@ -1,89 +1,61 @@
 "use client"
 
 import React, { ReactElement } from "react"
-import { techGradientBlue, techAccentCyan } from "utils/constant"
 
 const CoverImageSection = (): ReactElement => {
   return (
-    <>
+    <div
+      style={{
+        alignItems: "center",
+        backgroundImage: "url(/images/cover.jpg)",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        display: "flex",
+        height: "100vh",
+        justifyContent: "center",
+        position: "relative",
+        width: "100%",
+      }}
+    >
       <div
         style={{
-          backgroundImage: "url(/images/cover.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          display: "flex",
-          height: "50vh",
+          background: "rgba(0, 0, 0, 0.5)",
+          height: "100%",
+          position: "absolute",
           width: "100%",
+        }}
+      />
+      <div
+        style={{
+          boxSizing: "border-box",
+          color: "#eee",
+          padding: "1.5rem",
           position: "relative",
-          overflow: "hidden",
+          textAlign: "center",
         }}
       >
-        <div
+        <h1
           style={{
-            background: `linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(138, 43, 226, 0.25) 50%, rgba(0, 0, 0, 0.7) 100%)`,
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            height: "100%",
-            position: "relative",
-            width: "100%",
+            fontSize: "clamp(3rem, 9vw, 6.5rem)",
+            fontWeight: 700,
+            letterSpacing: "-0.02em",
+            lineHeight: 1.1,
           }}
         >
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              background: `radial-gradient(circle at 20% 80%, ${techAccentCyan}22 0%, transparent 50%), radial-gradient(circle at 80% 20%, ${techGradientBlue}22 0%, transparent 50%)`,
-              opacity: 0.3,
-            }}
-          />
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-around",
-              height: "100%",
-              maxWidth: "640px",
-              position: "relative",
-              width: "100%",
-            }}
-          >
-            <section
-              style={{
-                boxSizing: "border-box",
-                color: "#eee",
-                height: "33%",
-                lineHeight: 1.5,
-                padding: "1rem",
-                position: "absolute",
-                textAlign: "center",
-                width: "100%",
-                zIndex: 2,
-              }}
-            >
-              <h1
-                style={{
-                  fontSize: "2.5rem",
-                  lineHeight: 1.5,
-                }}
-              >
-                FFFFF Cafe
-              </h1>
-              <p
-                style={{
-                  color: "#f0f0f0",
-                }}
-              >
-                仕事をしやすく、それでいて遊びやすいような場所
-              </p>
-            </section>
-          </div>
-        </div>
+          FFFFF Cafe
+        </h1>
+        <p
+          style={{
+            color: "#f0f0f0",
+            fontSize: "clamp(1.1rem, 2vw, 1.5rem)",
+            margin: "1.5rem auto 0",
+            maxWidth: "600px",
+          }}
+        >
+          仕事をしやすく、それでいて遊びやすいような場所
+        </p>
       </div>
-    </>
+    </div>
   )
 }
 

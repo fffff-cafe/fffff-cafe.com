@@ -23,6 +23,6 @@ export default [
       "react/react-in-jsx-scope": "off",
       ...pluginReactHooks.configs.recommended.rules,
     },
-    settings: { react: { version: "detect" } },
+    settings: { react: { version: "19" } },
   },
 ]

@@ -68,8 +68,6 @@ const CoverImageSection = (): ReactElement => {
                 style={{
                   fontSize: "2.5rem",
                   lineHeight: 1.5,
-                  textShadow: "0 0 20px rgba(0, 212, 255, 0.5)",
-                  filter: "drop-shadow(0 0 10px rgba(0, 212, 255, 0.9))",
                 }}
               >
                 FFFFF Cafe
@@ -77,7 +75,6 @@ const CoverImageSection = (): ReactElement => {
               <p
                 style={{
                   color: "#f0f0f0",
-                  textShadow: "0 0 10px rgba(0, 255, 255, 0.3)",
                 }}
               >
                 仕事をしやすく、それでいて遊びやすいような場所

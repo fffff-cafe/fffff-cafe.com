@@ -1,7 +1,7 @@
 "use client"
 
 import { ComponentProps, FC } from "react"
-import { sectionBackgroundColorHex, techGradientBlue, techAccentCyan } from "utils/constant"
+import { sectionBackgroundColorHex, techAccentCyan } from "utils/constant"
 
 export const SectionTitle: FC<ComponentProps<"h2">> = ({
   style,
@@ -10,31 +10,20 @@ export const SectionTitle: FC<ComponentProps<"h2">> = ({
 }) => (
   <h2
     style={{
-      borderBottom: `solid 2px ${techAccentCyan}`,
+      borderBottom: `solid 1px ${techAccentCyan}88`,
       color: "#f0f0f0",
       display: "inline-block",
-      fontSize: "1.5rem",
-      lineHeight: 1.5,
-      margin: "1rem .75rem 1.5rem",
-      paddingBottom: ".25rem",
-      textShadow: `0 0 10px ${techGradientBlue}55`,
-      position: "relative",
+      fontSize: "clamp(1.75rem, 4vw, 2.25rem)",
+      fontWeight: 600,
+      letterSpacing: "0.02em",
+      lineHeight: 1.4,
+      margin: "0 .75rem 2.5rem",
+      paddingBottom: "0.75rem",
       ...style,
     }}
     {...props}
   >
     {children}
-    <div
-      style={{
-        position: "absolute",
-        bottom: "-2px",
-        left: 0,
-        right: 0,
-        height: "2px",
-        background: `linear-gradient(90deg, ${techAccentCyan}, ${techGradientBlue})`,
-        boxShadow: `0 0 10px ${techAccentCyan}`,
-      }}
-    />
   </h2>
 )
 
@@ -45,31 +34,16 @@ export const Section: FC<ComponentProps<"section">> = ({
 }) => (
   <section
     style={{
-      background: `linear-gradient(180deg, ${sectionBackgroundColorHex} 0%, rgba(32, 24, 16, 0.95) 100%)`,
+      background: sectionBackgroundColorHex,
       boxSizing: "border-box",
       color: "#f0f0f0",
-      lineHeight: 1.5,
-      padding: "2rem 1rem",
+      lineHeight: 1.7,
+      padding: "clamp(3.5rem, 8vw, 6rem) 1.5rem",
       textAlign: "center",
-      position: "relative",
-      overflow: "hidden",
       ...style,
     }}
     {...props}
   >
-    <div
-      style={{
-        position: "absolute",
-        top: 0,
-        left: "-100%",
-        width: "300%",
-        height: "100%",
-        background: `linear-gradient(90deg, transparent 0%, ${techGradientBlue}11 50%, transparent 100%)`,
-        pointerEvents: "none",
-      }}
-    />
-    <div style={{ position: "relative", zIndex: 1 }}>
-      {children}
-    </div>
+    {children}
   </section>
 )

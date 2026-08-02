@@ -20,5 +20,13 @@ a {
 
 a:hover {
   color: #00d4ff;
-  text-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
+}
+
+section p {
+  margin: 0 auto 1rem;
+  max-width: 640px;
+}
+
+section p:last-child {
+  margin-bottom: 0;
 }

@@ -1,13 +1,122 @@
 "use client"
 
-import React, { ReactElement, useState } from "react"
+import React, { ReactElement, useEffect, useState } from "react"
 import { Section, SectionTitle } from "components/elements"
-import LightBox from "react-image-lightbox"
-import "react-image-lightbox/style.css"
 
 const photos = Array(9)
   .fill(null)
   .map((_, i) => `/images/photo_${i + 1}.jpg`)
+
+type LightBoxProps = {
+  mainSrc: string
+  onClose: () => void
+  onMovePrev: () => void
+  onMoveNext: () => void
+}
+
+const LightBox = ({
+  mainSrc,
+  onClose,
+  onMovePrev,
+  onMoveNext,
+}: LightBoxProps): ReactElement => {
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose()
+      if (e.key === "ArrowLeft") onMovePrev()
+      if (e.key === "ArrowRight") onMoveNext()
+    }
+    document.addEventListener("keydown", handleKeyDown)
+    return () => document.removeEventListener("keydown", handleKeyDown)
+  }, [onClose, onMovePrev, onMoveNext])
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      style={{
+        alignItems: "center",
+        backgroundColor: "rgba(0, 0, 0, 0.85)",
+        bottom: 0,
+        display: "flex",
+        justifyContent: "center",
+        left: 0,
+        position: "fixed",
+        right: 0,
+        top: 0,
+        zIndex: 1100,
+      }}
+    >
+      <img
+        src={mainSrc}
+        alt=""
+        style={{
+          maxHeight: "90vh",
+          maxWidth: "90vw",
+          objectFit: "contain",
+        }}
+      />
+      <button
+        type="button"
+        aria-label="閉じる"
+        onClick={onClose}
+        style={{
+          background: "none",
+          border: "none",
+          color: "#f0f0f0",
+          cursor: "pointer",
+          fontSize: "2rem",
+          lineHeight: 1,
+          position: "absolute",
+          right: "1rem",
+          top: "1rem",
+        }}
+      >
+        ×
+      </button>
+      <button
+        type="button"
+        aria-label="前の写真"
+        onClick={(e) => {
+          e.stopPropagation()
+          onMovePrev()
+        }}
+        style={{
+          background: "none",
+          border: "none",
+          color: "#f0f0f0",
+          cursor: "pointer",
+          fontSize: "2rem",
+          left: "1rem",
+          lineHeight: 1,
+          position: "absolute",
+        }}
+      >
+        ‹
+      </button>
+      <button
+        type="button"
+        aria-label="次の写真"
+        onClick={(e) => {
+          e.stopPropagation()
+          onMoveNext()
+        }}
+        style={{
+          background: "none",
+          border: "none",
+          color: "#f0f0f0",
+          cursor: "pointer",
+          fontSize: "2rem",
+          lineHeight: 1,
+          position: "absolute",
+          right: "1rem",
+        }}
+      >
+        ›
+      </button>
+    </div>
+  )
+}
 
 const MoodSection = (): ReactElement => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -75,13 +184,11 @@ const MoodSection = (): ReactElement => {
       {isOpen && (
         <LightBox
           mainSrc={photos[imageIndex]}
-          nextSrc={photos[(imageIndex + 1) % photos.length]}
-          prevSrc={photos[(imageIndex + photos.length - 1) % photos.length]}
-          onCloseRequest={() => setIsOpen(false)}
-          onMovePrevRequest={() =>
+          onClose={() => setIsOpen(false)}
+          onMovePrev={() =>
             setImageIndex((imageIndex + photos.length - 1) % photos.length)
           }
-          onMoveNextRequest={() =>
+          onMoveNext={() =>
             setImageIndex((imageIndex + 1) % photos.length)
           }
         />

@@ -31,7 +31,12 @@ const SystemSection = (): ReactElement => {
                   padding: ".5rem",
                 }}
               >
-                平日 15:00 ~ 20:00 (L.O. 19:00)
+                <dl style={{ display: "flex", flexWrap: "wrap" }}>
+                  <dt style={{ width: "33%" }}>月・火・水</dt>
+                  <dd style={{ width: "66%" }}>15:00 ~ 20:00</dd>
+                  <dt style={{ width: "33%" }}>木・金 </dt>
+                  <dd style={{ width: "66%" }}>15:00 ~ 21:00</dd>
+                </dl>
               </td>
             </tr>
             <tr

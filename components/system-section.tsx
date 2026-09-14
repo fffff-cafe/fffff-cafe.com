@@ -31,7 +31,7 @@ const SystemSection = (): ReactElement => {
                   padding: ".5rem",
                 }}
               >
-                平日 15:00 ~ 21:00 (L.O. 20:00)
+                平日 15:00 ~ 20:00 (L.O. 19:00)
               </td>
             </tr>
             <tr

@@ -1,7 +1,8 @@
 "use client"
 
 import React, { ReactElement, useEffect, useState } from "react"
-import { Section, SectionTitle } from "components/elements"
+import { Section, SectionTitle, gridStyle } from "components/elements"
+import { accentColorHex } from "utils/constant"
 
 const photos = Array(9)
   .fill(null)
@@ -34,6 +35,7 @@ const LightBox = ({
     <div
       role="dialog"
       aria-modal="true"
+      aria-label="写真の拡大表示"
       style={{
         alignItems: "center",
         backgroundColor: "rgba(0, 0, 0, 0.85)",
@@ -49,7 +51,7 @@ const LightBox = ({
     >
       <img
         src={mainSrc}
-        alt=""
+        alt="FFFFF Cafe の店内写真（拡大）"
         style={{
           maxHeight: "90vh",
           maxWidth: "90vw",
@@ -118,68 +120,60 @@ const LightBox = ({
   )
 }
 
+const activities = [
+  { title: "もくもく会", body: "それぞれが自分の作業を黙々と進める会。ひとりでも気軽に参加できます。" },
+  { title: "勉強会", body: "世界史勉強会など、テーマを決めて学ぶ会を開催しています。" },
+  { title: "AI関連イベント", body: "コーディングエージェントや生成AIを実際に触ってみる会など。" },
+  { title: "レビュー会・解体会", body: "エンジニアが運営する場所ならではの企画も。" },
+  { title: "持ち込み企画", body: "貸切利用で、あなたの勉強会やワークショップを開催できます。" },
+]
+
 const MoodSection = (): ReactElement => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [imageIndex, setImageIndex] = useState<number>(0)
-  const openModal = (index: number) => {
-    setIsOpen(true)
-    setImageIndex(index)
-  }
+
   return (
     <>
-      <Section>
-        <SectionTitle>写真</SectionTitle>
-        <div
-          style={{
-            alignItems: "center",
-            display: "flex",
-            flexDirection: "row",
-            flexWrap: "wrap",
-            justifyContent: "space-around",
-            margin: "auto",
-            maxWidth: "640px",
-          }}
-        >
-          {photos.map((photo, i) => (
-            <div
-              key={i}
-              onClick={() => openModal(i)}
-              role="button"
-              tabIndex={i}
-              aria-hidden="true"
-              style={{
-                aspectRatio: 1,
-                backgroundImage: `url("${photo}")`,
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-                cursor: "pointer",
-                width: "min(33%, 33vw)",
-                position: "relative",
-              }}
-              onMouseEnter={(e) => {
-                const after = e.target as HTMLElement
-                after.style.setProperty("--hover", "1")
-              }}
-              onMouseLeave={(e) => {
-                const after = e.target as HTMLElement
-                after.style.setProperty("--hover", "0")
-              }}
-            >
-              <div
-                style={{
-                  backgroundColor: "rgba(0, 0, 0, 0.3)",
-                  height: "100%",
-                  width: "100%",
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  opacity: "var(--hover, 1)",
-                  transition: "opacity 0.2s",
-                }}
-              />
-            </div>
+      <Section id="community" dark>
+        <SectionTitle label="Community">
+          集まって、
+          <br />
+          手を動かす。
+        </SectionTitle>
+        <ul style={{ ...gridStyle("220px"), listStyle: "none", marginBottom: "3rem", padding: 0 }}>
+          {activities.map(({ title, body }) => (
+            <li key={title} style={{ borderTop: `4px solid ${accentColorHex}`, paddingTop: "1rem" }}>
+              <h3 style={{ fontSize: "1.2rem", marginBottom: ".5rem" }}>{title}</h3>
+              <p style={{ fontSize: ".95rem" }}>{body}</p>
+            </li>
           ))}
-        </div>
+        </ul>
+        <h3 style={{ marginBottom: "1rem" }}>店内の様子</h3>
+        <ul style={{ ...gridStyle("150px"), gap: "4px", listStyle: "none", padding: 0 }}>
+          {photos.map((photo, i) => (
+            <li key={photo}>
+              <button
+                type="button"
+                aria-label={`店内写真 ${i + 1} を拡大`}
+                onClick={() => {
+                  setIsOpen(true)
+                  setImageIndex(i)
+                }}
+                style={{ background: "none", border: "none", cursor: "zoom-in", padding: 0, width: "100%" }}
+              >
+                <img
+                  src={photo}
+                  alt={`FFFFF Cafe の店内写真 ${i + 1}`}
+                  width={1024}
+                  height={1024}
+                  loading="lazy"
+                  decoding="async"
+                  style={{ aspectRatio: 1, objectFit: "cover", width: "100%" }}
+                />
+              </button>
+            </li>
+          ))}
+        </ul>
       </Section>
       {isOpen && (
         <LightBox
@@ -188,9 +182,7 @@ const MoodSection = (): ReactElement => {
           onMovePrev={() =>
             setImageIndex((imageIndex + photos.length - 1) % photos.length)
           }
-          onMoveNext={() =>
-            setImageIndex((imageIndex + 1) % photos.length)
-          }
+          onMoveNext={() => setImageIndex((imageIndex + 1) % photos.length)}
         />
       )}
     </>

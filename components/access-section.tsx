@@ -1,26 +1,51 @@
 import React, { ReactElement } from "react"
-
-import { Section, SectionTitle } from "components/elements"
+import { ButtonLink, InfoList, Section, SectionTitle, gridStyle } from "components/elements"
+import { inkColorHex } from "utils/constant"
+import { access, address, mapEmbedUrl, mapUrl, openingHours } from "utils/info"
 
 const AccessSection = (): ReactElement => {
   return (
-    <>
-      <Section>
-        <SectionTitle id="access">アクセス</SectionTitle>
-        <p style={{ textAlign: "center" }}>
-          東京都千代田区神田佐久間町3-37-1 山茂登ビル3F
-        </p>
+    <Section id="access">
+      <SectionTitle label="Access">アクセス</SectionTitle>
+      <div style={{ ...gridStyle("300px"), gap: "2rem" }}>
+        <div>
+          <InfoList
+            items={[
+              ["所在地", address],
+              ["最寄り駅", access],
+              ["入口", "山茂登ビルの3階です。"],
+              [
+                "営業時間",
+                openingHours.map(({ label, opens, closes }) => (
+                  <span key={label} style={{ display: "block" }}>
+                    {label} {opens} – {closes}
+                  </span>
+                )),
+              ],
+            ]}
+          />
+          <div style={{ marginTop: "1.5rem" }}>
+            <ButtonLink href={mapUrl} variant="ink">
+              Googleマップで開く
+            </ButtonLink>
+          </div>
+        </div>
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d810.0769926028181!2d139.7681477292236!3d35.694038298761974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188dfc0ee3f1df%3A0x1c3b10dcfccc957b!2sFFFFF%20Cafe!5e0!3m2!1sja!2sjp!4v1647426190796!5m2!1sja!2sjp"
+          src={mapEmbedUrl}
           width="600"
           height="450"
-          style={{ border: 0, maxHeight: "66vh", maxWidth: "min(960px, 100%)" }}
+          style={{
+            border: `2px solid ${inkColorHex}`,
+            height: "auto",
+            aspectRatio: "4 / 3",
+            width: "100%",
+          }}
           allowFullScreen={true}
           loading="lazy"
-          title="google map"
-        ></iframe>
-      </Section>
-    </>
+          title="FFFFF Cafe の地図"
+        />
+      </div>
+    </Section>
   )
 }
 

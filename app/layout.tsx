@@ -1,59 +1,70 @@
 import React, { ReactElement } from "react"
-import Head from "next/head"
+import { Metadata, Viewport } from "next"
+import Script from "next/script"
+import "@fontsource/noto-sans-jp/400.css"
+import "@fontsource/noto-sans-jp/700.css"
+import "@fontsource/noto-sans-jp/900.css"
 import "assets/styles.css"
 import Header from "components/header"
+import FooterSection from "components/footer-section"
+import { jsonLd, siteDescription, siteName, siteUrl } from "utils/info"
 
 const GA_TRACKING_ID = "G-6XHCCTWXQQ"
 
-const title = "FFFFF Cafe - 作業できるカフェ@秋葉原"
-const description =
-  "秋葉原駅3分にある作業のできる電源・Wi-Fi完備の喫茶店です。1ドリンク500円からご利用できます。"
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "FFFFF Cafe - 秋葉原の作業できるカフェ・コワーキングスペース",
+    template: "%s | FFFFF Cafe",
+  },
+  description: siteDescription,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "ja_JP",
+    siteName,
+    url: "/",
+    images: [{ url: "/images/cover.jpg", width: 1024, height: 512 }],
+  },
+  twitter: { card: "summary_large_image", site: "@fffff_cafe" },
+}
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#111111",
+}
+
 const Layout = ({ children }: { children: React.ReactNode }): ReactElement => {
   return (
-    <>
-      <html lang="ja">
-        <Head>
-          <>
-            <meta charSet="utf-8" />
-            <meta
-              name="viewport"
-              content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-            />
-            <meta name="description" content={description} />
-            <meta property="og:title" content={title} />
-            <meta property="og:description" content={description} />
-            <meta property="og:url" content="https://fffff-cafe.com" />
-            <meta name="twitter:card" content="summary" />
-            <meta
-              property="og:image"
-              content="https://fffff-cafe.com/images/cover.jpg"
-            />
-            <link rel="canonical" href="https://fffff-cafe.com" />
-            <title>{title}</title>
-            <script
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-            />
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${GA_TRACKING_ID}', {
-                  page_path: window.location.pathname,
-                });
-            `,
-              }}
-            />
-          </>
-        </Head>
-        <body style={{ margin: 0 }}>
-          {children}
-          <Header />
-        </body>
-      </html>
-    </>
+    <html lang="ja">
+      <body>
+        <a href="#main" className="skip-link">
+          本文へスキップ
+        </a>
+        <Header />
+        <main id="main">{children}</main>
+        <FooterSection />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="gtag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_TRACKING_ID}', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
+      </body>
+    </html>
   )
 }
 

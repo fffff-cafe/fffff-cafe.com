@@ -3,10 +3,11 @@ import AccessSection from "components/access-section"
 import CalendarSection from "components/calendar-section"
 import ConceptSection from "components/concept-section"
 import CoverImageSection from "components/cover-image-section"
-import FooterSection from "components/footer-section"
 import MoodSection from "components/mood-section"
 import NowSection from "components/now-section"
+import RentalSection from "components/rental-section"
 import SystemSection from "components/system-section"
+import UpcomingEventsSection from "components/upcoming-events-section"
 import MemberSection from "components/member-section"
 import ContactSection from "components/contact-section"
 import { getLatestArticles } from "utils/articles"
@@ -18,14 +19,15 @@ const IndexPage = async (): Promise<React.ReactElement> => {
     <>
       <CoverImageSection />
       <ConceptSection />
+      <UpcomingEventsSection limit={3} />
       <SystemSection />
       <MoodSection />
+      <RentalSection />
       <CalendarSection />
-      <MemberSection />
       <NowSection latestArticles={latestArticles} />
       <AccessSection />
+      <MemberSection />
       <ContactSection />
-      <FooterSection />
     </>
   )
 }

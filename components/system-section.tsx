@@ -1,145 +1,104 @@
 import React, { ReactElement } from "react"
-import { Section, SectionTitle } from "components/elements"
+import Link from "next/link"
+import { InfoList, Section, SectionTitle, gridStyle } from "components/elements"
+import { accentColorHex, inkColorHex, monoFontFamily } from "utils/constant"
+import {
+  dropInPrice,
+  lendingEquipment,
+  openingHours,
+  paymentMethods,
+  seats,
+  twitterUrl,
+} from "utils/info"
 
 const SystemSection = (): ReactElement => {
   return (
-    <>
-      <Section>
-        <SectionTitle>FFFFF Cafeの利用について</SectionTitle>
-        <p>
-          500円~で利用できる作業のできるカフェです（ドロップイン利用のコワーキングスペース）。
-          <br />
-          食事の持ち込みは自由です。
-        </p>
-        <table
+    <Section id="guide">
+      <SectionTitle label="Guide">利用案内・料金</SectionTitle>
+      <div style={{ ...gridStyle("300px"), gap: "2rem", marginBottom: "3rem" }}>
+        <div
           style={{
-            borderCollapse: "collapse",
-            margin: "1rem auto",
-            maxWidth: "840px",
-            width: "100%",
+            background: accentColorHex,
+            border: `2px solid ${inkColorHex}`,
+            padding: "1.5rem",
           }}
         >
-          <tbody>
-            <tr
-              style={{
-                borderBottom: "solid 1px #f0f0f0",
-              }}
-            >
-              <th>営業時間</th>
-              <td
-                style={{
-                  padding: ".5rem",
-                }}
+          <h3 style={{ fontSize: "1rem" }}>料金（ドロップイン）</h3>
+          <p
+            style={{
+              fontSize: "clamp(2rem, 7vw, 3rem)",
+              fontWeight: 900,
+              lineHeight: 1.2,
+              margin: ".5rem 0",
+            }}
+          >
+            {dropInPrice}
+          </p>
+          <p style={{ fontSize: ".9rem" }}>
+            作業のできるカフェ（ドロップイン利用のコワーキングスペース）です。定期利用は応相談。
+          </p>
+        </div>
+        <div
+          style={{
+            background: inkColorHex,
+            color: "#fff",
+            padding: "1.5rem",
+          }}
+        >
+          <h3 style={{ fontSize: "1rem" }}>営業時間</h3>
+          <dl style={{ fontFamily: monoFontFamily, margin: ".75rem 0" }}>
+            {openingHours.map(({ label, opens, closes }) => (
+              <div
+                key={label}
+                style={{ display: "flex", flexWrap: "wrap", gap: "0 1rem" }}
               >
-                <dl style={{ display: "flex", flexWrap: "wrap" }}>
-                  <dt style={{ width: "33%" }}>月・火・水</dt>
-                  <dd style={{ width: "66%" }}>15:00 ~ 20:00</dd>
-                  <dt style={{ width: "33%" }}>木・金 </dt>
-                  <dd style={{ width: "66%" }}>15:00 ~ 21:00</dd>
-                </dl>
-              </td>
-            </tr>
-            <tr
-              style={{
-                borderBottom: "solid 1px #f0f0f0",
-              }}
-            >
-              <th>席数</th>
-              <td
-                style={{
-                  padding: ".5rem",
-                }}
-              >
-                20席
-              </td>
-            </tr>
-            <tr
-              style={{
-                borderBottom: "solid 1px #f0f0f0",
-              }}
-            >
-              <th>電源</th>
-              <td
-                style={{
-                  padding: ".5rem",
-                }}
-              >
-                全席完備
-              </td>
-            </tr>
-            <tr
-              style={{
-                borderBottom: "solid 1px #f0f0f0",
-              }}
-            >
-              <th>Wi-Fi</th>
-              <td
-                style={{
-                  padding: ".5rem",
-                }}
-              >
-                無料
-              </td>
-            </tr>
-            <tr
-              style={{
-                borderBottom: "solid 1px #f0f0f0",
-              }}
-            >
-              <th>無料貸出設備 ※1</th>
-              <td
-                style={{
-                  padding: ".5rem",
-                }}
-              >
-                充電ケーブル、モニター、ホワイトボード
-              </td>
-            </tr>
-            <tr
-              style={{
-                borderBottom: "solid 1px #f0f0f0",
-              }}
-            >
-              <th>貸切利用 ※2</th>
-              <td
-                style={{
-                  padding: ".5rem",
-                }}
-              >
-                <p>2hours: 6,000円</p>
-                <p>3hours: 8,000円</p>
-                <p>4hours: 10,000円</p>
-                <p>6hours: 12,000円</p>
-                <p>1day: 20,000円</p>
-              </td>
-            </tr>
-            <tr
-              style={{
-                borderBottom: "solid 1px #f0f0f0",
-              }}
-            >
-              <th>定期利用</th>
-              <td
-                style={{
-                  padding: ".5rem",
-                }}
-              >
-                応相談
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <p>
-          クレジットカード・電子マネー（交通系IC、QUIC
-          Pay、iD、PayPay）のみの決済になります。（現金不可）
-        </p>
-        <p>
-          ※1 数量限定 先着順
-          <br />
-          ※4 カフェの貸切利用 3営業日前までにご連絡ください
-        </p>
-      </Section>
-    </>
+                <dt style={{ fontWeight: 700, minWidth: "6em" }}>{label}</dt>
+                <dd style={{ fontSize: "1.4rem", fontWeight: 700, margin: 0 }}>
+                  {opens} – {closes}
+                </dd>
+              </div>
+            ))}
+          </dl>
+          <p style={{ fontSize: ".9rem" }}>
+            営業日・イベントは
+            <Link href="/events#calendar" style={{ color: accentColorHex }}>
+              営業カレンダー
+            </Link>
+            でご確認ください。
+          </p>
+        </div>
+      </div>
+      <div id="equipment" style={{ scrollMarginTop: "6rem" }}>
+        <InfoList
+          items={[
+            ["支払い方法", `${paymentMethods}のみ。現金はご利用いただけません。`],
+            ["利用方法", "ドロップインでご利用いただけます。"],
+            ["席数", seats],
+            ["電源", "全席完備"],
+            ["Wi-Fi", "無料"],
+            [
+              "無料貸出設備",
+              `${lendingEquipment.join("、")}（数量限定・先着順）`,
+            ],
+            ["飲食物の持ち込み", "食事の持ち込みは自由です。"],
+            ["定期利用", "応相談"],
+            [
+              "貸切利用",
+              <Link key="rental" href="/rental">
+                貸切・会場利用の案内へ →
+              </Link>,
+            ],
+          ]}
+        />
+      </div>
+      <p style={{ fontSize: ".9rem", marginTop: "1.5rem" }}>
+        ご不明な点は
+        <a href={twitterUrl} target="_blank" rel="noreferrer">
+          X（Twitter）のDM
+        </a>
+        からお問い合わせください。
+      </p>
+    </Section>
   )
 }
 

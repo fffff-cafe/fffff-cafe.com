@@ -1,25 +1,20 @@
 import React, { ReactElement } from "react"
-import { Section, SectionTitle } from "components/elements"
-import { ExternalLink } from "components/elements/link"
+import { ButtonLink, Section, SectionTitle } from "components/elements"
+import { slackUrl, twitterUrl } from "utils/info"
 
 const ContactSection = (): ReactElement => {
   return (
-    <>
-      <Section style={{ textAlign: "center" }}>
-        <SectionTitle>お問い合わせ</SectionTitle>
-        <div>
-          <ExternalLink href="//twitter.com/fffff_cafe">Twitter</ExternalLink>
-          のDMからご連絡ください。
-        </div>
-        <div>
-          イベントの連絡については
-          <ExternalLink href="//join.slack.com/t/fffff-81d6773/shared_invite/zt-1d2ozux7o-F2O5pNC5vmXzt1Allox2xQ">
-            こちらのSlack
-          </ExternalLink>
-          からも受け付けています。
-        </div>
-      </Section>
-    </>
+    <Section id="contact" dark>
+      <SectionTitle label="Contact">お問い合わせ</SectionTitle>
+      <p>ご利用・貸切のご相談は X（Twitter）のDMからご連絡ください。</p>
+      <p>イベントに関する連絡は Slack でも受け付けています。</p>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", marginTop: "2rem" }}>
+        <ButtonLink href={twitterUrl}>X（Twitter）でDMする</ButtonLink>
+        <ButtonLink href={slackUrl} variant="outline">
+          Slackに参加する
+        </ButtonLink>
+      </div>
+    </Section>
   )
 }
 

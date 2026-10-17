@@ -1,206 +1,153 @@
 "use client"
 
-import React, { ReactElement, useEffect, useState } from "react"
+import React, { CSSProperties, ReactElement, useState } from "react"
 import { Section, SectionTitle } from "components/elements"
-import axios from "axios"
-import { GoogleCalendarEventResponse, GoogleCalendarEventItem } from "@types"
+import { GoogleCalendarEventItem } from "@types"
 import dayjs from "dayjs"
-import timezone from "dayjs/plugin/timezone"
 import Modal from "react-modal"
-import { sectionBackgroundColorHex, primaryColorHex } from "utils/constant"
-import { useWindowWidth } from "utils/hooks/width"
-
-const baseUrl = "https://www.googleapis.com/calendar/v3/calendars"
-const calendarId = "dbofsjce5m94lubjbq28bhn2o8@group.calendar.google.com"
-const key = "AIzaSyAejTOmT5qkL3uTEYBA1eQup2WVbD7pjPY"
-
-dayjs.extend(timezone)
+import { accentColorHex, inkColorHex, monoFontFamily, paperColorHex } from "utils/constant"
+import { isPublicEvent, useCalendarEvents } from "utils/hooks/calendar"
 
 const CalendarSection = (): ReactElement => {
-  const [events, setEvents] = useState<GoogleCalendarEventItem[]>()
-  const nowDay = dayjs(new Date())
+  const events = useCalendarEvents(30)
+  const nowDay = dayjs()
   const [selectedEvent, setSelectedEvent] =
-    React.useState<GoogleCalendarEventItem | null>(null)
-  const width = useWindowWidth()
-
-  useEffect(() => {
-    const fetchEvents = async (nowDay: dayjs.Dayjs) => {
-      const { data } = await axios.get<GoogleCalendarEventResponse>(
-        `${baseUrl}/${calendarId}/events`,
-        {
-          params: {
-            key,
-            showDeleted: true,
-            timeMin: nowDay.format("YYYY-MM-DDT00:00:00[Z]"),
-            timeMax: nowDay.add(30, "day").format("YYYY-MM-DDT00:00:00[Z]"),
-            orderBy: "startTime",
-            singleEvents: true,
-          },
-        }
-      )
-      setEvents(data.items.filter((item) => item.status == "confirmed"))
-    }
-    const now = dayjs(new Date())
-    fetchEvents(now)
-  }, [])
+    useState<GoogleCalendarEventItem | null>(null)
 
   return (
-    <>
-      <Section>
-        <SectionTitle id="calendar">営業カレンダー</SectionTitle>
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: ".15rem",
-            margin: "auto",
-            maxWidth: "960px",
-            width: "100%",
-          }}
+    <Section id="calendar">
+      <SectionTitle label="Calendar">営業カレンダー</SectionTitle>
+      <p style={{ marginBottom: "1.5rem" }}>
+        今後30日間の営業・イベント予定です。
+        <span
+          style={{ background: accentColorHex, border: `1px solid ${inkColorHex}`, padding: "0 .4rem" }}
         >
-          {Array(30)
-            .fill(null)
-            .map((_, i) => (
+          黄色
+        </span>
+        の予定は押すと詳細を表示します。
+      </p>
+      <div
+        className="calendar-grid"
+        style={{ "--start": nowDay.day() + 1 } as CSSProperties}
+      >
+        {Array(30)
+          .fill(null)
+          .map((_, i) => {
+            const day = nowDay.add(i, "day")
+            return (
               <div
                 key={i}
                 style={{
-                  background: "#333",
-                  boxSizing: "border-box",
-                  marginLeft:
-                    width > 800 && i == 0
-                      ? `calc(${14.28 * nowDay.day()}%)`
-                      : undefined,
-                  minHeight: "2rem",
-                  padding: "1.25rem .5rem .25rem",
-                  position: "relative",
-                  width:
-                    width > 800
-                      ? "calc(14.28% - .15rem)"
-                      : "calc(33.33% - .15rem) ",
+                  background: "#fff",
+                  minHeight: "5rem",
+                  outline: `1px solid ${inkColorHex}`,
+                  padding: ".4rem",
                 }}
               >
                 <div
                   style={{
-                    fontSize: ".5rem",
-                    left: ".5rem",
-                    margin: ".15rem",
-                    position: "absolute",
-                    top: ".1rem",
+                    fontFamily: monoFontFamily,
+                    fontSize: ".75rem",
+                    fontWeight: 700,
+                    marginBottom: ".25rem",
                   }}
                 >
-                  {nowDay.add(i, "day").format("M/D ddd")}
+                  {day.format("M/D ddd")}
                 </div>
                 {events
                   ?.filter(
-                    (e) =>
-                      dayjs(e.start.dateTime).format("M/D") ===
-                      nowDay.add(i, "day").format("M/D")
+                    (e) => dayjs(e.start.dateTime).format("M/D") === day.format("M/D")
                   )
-                  .map((event) => (
-                    <div
-                      key={event.id}
-                      onClick={() => {
-                        if (event.description) {
-                          setSelectedEvent(event)
-                        }
-                      }}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                          if (event.description) {
-                            setSelectedEvent(event)
-                          }
-                        }
-                      }}
-                      role={event.description ? "button" : undefined}
-                      tabIndex={event.description ? 0 : undefined}
-                      style={{
-                        backgroundColor: event.description
-                          ? primaryColorHex
-                          : "#444",
-                        borderRadius: ".25rem",
-                        color: "#fff",
-                        display: "block",
-                        fontSize: ".75rem",
-                        padding: ".25rem .5rem",
-                        textDecoration: "none",
-                        cursor: event.description ? "pointer" : "default",
-                        marginBottom: ".25rem",
-                      }}
-                    >
-                      <time
-                        style={{
-                          display: "block",
-                          fontSize: ".5rem",
-                        }}
-                      >
+                  .map((event) => {
+                    const time = (
+                      <time style={{ display: "block", fontFamily: monoFontFamily, fontSize: ".7rem" }}>
                         {dayjs(event.start.dateTime).format("HH:mm")}-
                         {dayjs(event.end.dateTime).format("HH:mm")}
                       </time>
-                      {event.summary}
-                    </div>
-                  ))}
+                    )
+                    const chipStyle: CSSProperties = {
+                      background: isPublicEvent(event) ? accentColorHex : "#e8e6e0",
+                      border: isPublicEvent(event) ? `1px solid ${inkColorHex}` : "none",
+                      color: inkColorHex,
+                      display: "block",
+                      fontSize: ".75rem",
+                      lineHeight: 1.4,
+                      marginBottom: ".25rem",
+                      padding: ".25rem .4rem",
+                      textAlign: "left",
+                      width: "100%",
+                    }
+                    return isPublicEvent(event) ? (
+                      <button
+                        key={event.id}
+                        type="button"
+                        onClick={() => setSelectedEvent(event)}
+                        style={{ ...chipStyle, cursor: "pointer", font: "inherit", fontSize: ".75rem" }}
+                      >
+                        {time}
+                        {event.summary}
+                      </button>
+                    ) : (
+                      <div key={event.id} style={chipStyle}>
+                        {time}
+                        {event.summary}
+                      </div>
+                    )
+                  })}
               </div>
-            ))}
-        </div>
-        {selectedEvent && (
-          <Modal
-            isOpen={!!selectedEvent}
-            onRequestClose={() => setSelectedEvent(null)}
-            contentLabel="Event"
+            )
+          })}
+      </div>
+      {selectedEvent && (
+        <Modal
+          isOpen={!!selectedEvent}
+          onRequestClose={() => setSelectedEvent(null)}
+          contentLabel={selectedEvent.summary}
+          ariaHideApp={false}
+          style={{
+            overlay: {
+              backgroundColor: "rgba(0, 0, 0, 0.75)",
+              zIndex: 1100,
+            },
+            content: {
+              backgroundColor: paperColorHex,
+              border: `2px solid ${inkColorHex}`,
+              borderRadius: 0,
+              inset: "5vh 1rem",
+              margin: "auto",
+              maxWidth: "800px",
+            },
+          }}
+        >
+          <button
+            type="button"
+            onClick={() => setSelectedEvent(null)}
             style={{
-              overlay: {
-                backgroundColor: "rgba(0, 0, 0, 0.75)",
-                zIndex: 1000,
-              },
-              content: {
-                backgroundColor: sectionBackgroundColorHex,
-                margin: "auto",
-                maxWidth: "800px",
-              },
+              background: inkColorHex,
+              border: "none",
+              color: paperColorHex,
+              cursor: "pointer",
+              float: "right",
+              font: "inherit",
+              padding: ".25rem .75rem",
             }}
           >
-            <div
-              style={{
-                color: "#d0d0d0",
-              }}
-            >
-              <h2
-                style={{
-                  color: "white",
-                }}
-              >
-                {selectedEvent.summary}
-              </h2>
-              <p>
-                <time>
-                  {dayjs(selectedEvent.start.dateTime).format(
-                    "MM/DD (ddd) HH:mm"
-                  )}
-                  -{dayjs(selectedEvent.end.dateTime).format("HH:mm")}
-                </time>
-              </p>
-              <br />
-              <p>
-                {selectedEvent.description && (
-                  <pre
-                    style={{
-                      whiteSpace: "pre-wrap",
-                      fontSize: ".75rem",
-                    }}
-                    dangerouslySetInnerHTML={{
-                      __html: selectedEvent.description.replace(
-                        /<a/g,
-                        `<a style="color: ${primaryColorHex}"`
-                      ),
-                    }}
-                  />
-                )}
-              </p>
-            </div>
-          </Modal>
-        )}
-      </Section>
-    </>
+            閉じる ×
+          </button>
+          <h2 style={{ lineHeight: 1.3 }}>{selectedEvent.summary}</h2>
+          <p style={{ fontFamily: monoFontFamily, fontWeight: 700, margin: ".5rem 0 1.5rem" }}>
+            <time dateTime={selectedEvent.start.dateTime}>
+              {dayjs(selectedEvent.start.dateTime).format("YYYY/MM/DD (ddd) HH:mm")}-
+              {dayjs(selectedEvent.end.dateTime).format("HH:mm")}
+            </time>
+          </p>
+          <div
+            style={{ fontSize: ".9rem", whiteSpace: "pre-wrap", wordBreak: "break-word" }}
+            dangerouslySetInnerHTML={{ __html: selectedEvent.description ?? "" }}
+          />
+        </Modal>
+      )}
+    </Section>
   )
 }
 

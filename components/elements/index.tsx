@@ -62,7 +62,7 @@ export const Label: FC<{ children: ReactNode }> = ({ children }) => (
   <span
     style={{
       background: accentColorHex,
-      color: inkColorHex,
+      color: paperColorHex,
       display: "inline-block",
       fontFamily: monoFontFamily,
       fontSize: ".8rem",
@@ -85,7 +85,7 @@ export const PageHeader: FC<{ label: string; title: string; lead?: string }> = (
   <header
     style={{
       background: accentColorHex,
-      color: inkColorHex,
+      color: paperColorHex,
       padding: "clamp(6rem, 14vw, 9rem) 1rem clamp(2.5rem, 6vw, 4rem)",
     }}
   >
@@ -129,7 +129,7 @@ export const ButtonLink: FC<ButtonLinkProps> = ({
 }) => {
   const external = href.startsWith("http")
   const colors = {
-    accent: { background: accentColorHex, color: inkColorHex },
+    accent: { background: accentColorHex, color: paperColorHex },
     ink: { background: inkColorHex, color: paperColorHex },
     outline: { background: "transparent", color: "inherit" },
   }[variant]

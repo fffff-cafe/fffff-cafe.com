@@ -8,7 +8,7 @@ import ContactSection from "components/contact-section"
 export const metadata: Metadata = {
   title: "利用案内・料金 - 秋葉原の作業できるカフェ",
   description:
-    "FFFFF Cafeの料金・営業時間・支払い方法・設備・持ち込みルール。秋葉原駅徒歩3分、1ドリンク500円からドロップインで作業できます。全席電源・Wi-Fi無料、モニター貸出あり。",
+    "FFFFF Cafeの料金・営業時間・支払い方法・設備・持ち込みルール。秋葉原駅徒歩3分、2時間500円からドロップインで作業できます。全席電源・Wi-Fi無料、モニター貸出あり。",
   alternates: { canonical: "/guide" },
   openGraph: { url: "/guide" },
 }

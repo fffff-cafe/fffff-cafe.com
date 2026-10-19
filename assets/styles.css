@@ -26,9 +26,9 @@ img {
 }
 
 :focus-visible {
-  outline: 3px solid #111;
-  outline-offset: 3px;
-  box-shadow: 0 0 0 6px #ffe600;
+  outline: 3px solid #a22041;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px #fff;
 }
 
 .button-link {
@@ -42,8 +42,8 @@ img {
 
 .nav-link:hover,
 .nav-link[aria-current="page"] {
-  background: #ffe600;
-  color: #111;
+  background: #a22041;
+  color: #fff;
 }
 
 .article-body h1,
@@ -80,8 +80,8 @@ img {
 }
 
 .skip-link {
-  background: #ffe600;
-  color: #111;
+  background: #a22041;
+  color: #fff;
   font-weight: 700;
   padding: 0.5rem 1rem;
 }

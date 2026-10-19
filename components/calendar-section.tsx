@@ -20,9 +20,9 @@ const CalendarSection = (): ReactElement => {
       <p style={{ marginBottom: "1.5rem" }}>
         今後30日間の営業・イベント予定です。
         <span
-          style={{ background: accentColorHex, border: `1px solid ${inkColorHex}`, padding: "0 .4rem" }}
+          style={{ background: accentColorHex, color: paperColorHex, padding: "0 .4rem" }}
         >
-          黄色
+          色付き
         </span>
         の予定は押すと詳細を表示します。
       </p>
@@ -68,7 +68,7 @@ const CalendarSection = (): ReactElement => {
                     const chipStyle: CSSProperties = {
                       background: isPublicEvent(event) ? accentColorHex : "#e8e6e0",
                       border: isPublicEvent(event) ? `1px solid ${inkColorHex}` : "none",
-                      color: inkColorHex,
+                      color: isPublicEvent(event) ? paperColorHex : inkColorHex,
                       display: "block",
                       fontSize: ".75rem",
                       lineHeight: 1.4,

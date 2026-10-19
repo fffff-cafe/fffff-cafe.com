@@ -4,7 +4,7 @@ import React, { ReactElement } from "react"
 import Link from "next/link"
 import dayjs from "dayjs"
 import { ButtonLink, Section, SectionTitle, gridStyle } from "components/elements"
-import { accentColorHex, inkColorHex, monoFontFamily } from "utils/constant"
+import { accentColorHex, inkColorHex, monoFontFamily, paperColorHex } from "utils/constant"
 import {
   applyLink,
   eventFee,
@@ -73,6 +73,7 @@ const UpcomingEventsSection = ({ limit }: { limit?: number }): ReactElement => {
                   style={{
                     alignItems: "baseline",
                     background: accentColorHex,
+                    color: paperColorHex,
                     borderBottom: `2px solid ${inkColorHex}`,
                     display: "flex",
                     fontFamily: monoFontFamily,

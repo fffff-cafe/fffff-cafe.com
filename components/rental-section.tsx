@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react"
 import { ButtonLink, InfoList, Section, SectionTitle, gridStyle } from "components/elements"
-import { accentColorHex, inkColorHex, monoFontFamily, paperColorHex } from "utils/constant"
+import { accentColorHex, monoFontFamily, paperColorHex } from "utils/constant"
 import { lendingEquipment, rentalPlans, seats, twitterUrl } from "utils/info"
 
 const uses = ["勉強会", "LT会", "ワークショップ", "交流会"]
@@ -32,7 +32,7 @@ const RentalSection = (): ReactElement => {
             key={use}
             style={{
               background: accentColorHex,
-              color: inkColorHex,
+              color: paperColorHex,
               fontWeight: 700,
               padding: ".3rem .8rem",
             }}

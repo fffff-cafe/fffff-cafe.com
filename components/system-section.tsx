@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react"
 import Link from "next/link"
 import { InfoList, Section, SectionTitle, gridStyle } from "components/elements"
-import { accentColorHex, inkColorHex, monoFontFamily } from "utils/constant"
+import { accentColorHex, inkColorHex, monoFontFamily, paperColorHex } from "utils/constant"
 import {
   dropInPrice,
   lendingEquipment,
@@ -19,6 +19,7 @@ const SystemSection = (): ReactElement => {
         <div
           style={{
             background: accentColorHex,
+            color: paperColorHex,
             border: `2px solid ${inkColorHex}`,
             padding: "1.5rem",
           }}
@@ -61,7 +62,7 @@ const SystemSection = (): ReactElement => {
           </dl>
           <p style={{ fontSize: ".9rem" }}>
             営業日・イベントは
-            <Link href="/events#calendar" style={{ color: accentColorHex }}>
+            <Link href="/events#calendar" style={{ color: paperColorHex }}>
               営業カレンダー
             </Link>
             でご確認ください。

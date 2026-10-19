@@ -41,7 +41,8 @@ const HeaderSection = (): ReactElement => {
         <Link
           href="/"
           style={{
-            color: accentColorHex,
+            background: accentColorHex,
+            color: paperColorHex,
             fontFamily: monoFontFamily,
             fontSize: "1.1rem",
             fontWeight: 900,

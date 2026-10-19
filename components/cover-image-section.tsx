@@ -27,7 +27,9 @@ const CoverImageSection = (): ReactElement => {
         <div style={{ alignSelf: "center" }}>
           <p
             style={{
-              color: accentColorHex,
+              background: accentColorHex,
+              display: "inline-block",
+              padding: ".15rem .5rem",
               fontFamily: monoFontFamily,
               fontSize: ".85rem",
               fontWeight: 700,
@@ -53,7 +55,8 @@ const CoverImageSection = (): ReactElement => {
             <span
               style={{
                 background: accentColorHex,
-                color: inkColorHex,
+                color: paperColorHex,
+                display: "inline-block",
                 padding: "0 .15em",
                 whiteSpace: "nowrap",
               }}

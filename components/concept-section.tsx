@@ -6,7 +6,7 @@ import { accentColorHex, inkColorHex, monoFontFamily } from "utils/constant"
 const features = [
   {
     title: "ドロップインで作業",
-    body: "1ドリンク500円から。ふらっと立ち寄れるドロップイン利用。",
+    body: "2時間500円から。ふらっと立ち寄れるドロップイン利用。",
     href: "/guide",
   },
   {
@@ -62,7 +62,7 @@ const ConceptSection = (): ReactElement => {
             </span>
             <h3
               style={{
-                background: `linear-gradient(transparent 60%, ${accentColorHex} 60%)`,
+                background: `linear-gradient(transparent 82%, ${accentColorHex} 82%)`,
                 fontSize: "1.2rem",
                 margin: "1rem 0 .5rem",
                 width: "fit-content",

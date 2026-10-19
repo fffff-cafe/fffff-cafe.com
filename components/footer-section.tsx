@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react"
 import Link from "next/link"
 import { GithubIcon } from "components/elements/icon"
-import { accentColorHex, inkColorHex, monoFontFamily, paperColorHex } from "utils/constant"
+import { inkColorHex, monoFontFamily, paperColorHex } from "utils/constant"
 import { access, address, githubUrl, twitterUrl } from "utils/info"
 
 const links = [
@@ -24,7 +24,7 @@ const FooterSection = (): ReactElement => {
       <div style={{ margin: "0 auto", maxWidth: "1080px" }}>
         <p
           style={{
-            color: accentColorHex,
+            color: paperColorHex,
             fontFamily: monoFontFamily,
             fontSize: "clamp(2.5rem, 12vw, 7rem)",
             fontWeight: 900,

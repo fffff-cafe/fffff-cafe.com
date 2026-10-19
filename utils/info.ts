@@ -2,7 +2,7 @@
 export const siteUrl = "https://fffff-cafe.com"
 export const siteName = "FFFFF Cafe"
 export const siteDescription =
-  "秋葉原駅徒歩3分、全席電源・Wi-Fi完備の作業できるカフェ。1ドリンク500円からドロップインで利用でき、もくもく会や勉強会も開催。貸切でイベント会場としても使えます。"
+  "秋葉原駅徒歩3分、全席電源・Wi-Fi完備の作業できるカフェ。2時間500円からドロップインで利用でき、もくもく会や勉強会も開催。貸切でイベント会場としても使えます。"
 
 export const address = "東京都千代田区神田佐久間町3-37-1 山茂登ビル3F"
 export const access = "秋葉原駅 徒歩3分"
@@ -12,7 +12,7 @@ export const openingHours = [
   { label: "木・金", days: ["Thursday", "Friday"], opens: "15:00", closes: "21:00" },
 ]
 
-export const dropInPrice = "1ドリンク 500円〜"
+export const dropInPrice = "2時間 500円〜"
 export const seats = "20席"
 export const lendingEquipment = ["充電ケーブル", "モニター", "ホワイトボード"]
 export const paymentMethods =

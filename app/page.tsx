@@ -8,6 +8,7 @@ import NowSection from "components/now-section"
 import RentalSection from "components/rental-section"
 import SystemSection from "components/system-section"
 import UpcomingEventsSection from "components/upcoming-events-section"
+import WeekSection from "components/week-section"
 import MemberSection from "components/member-section"
 import ContactSection from "components/contact-section"
 import { getLatestArticles } from "utils/articles"
@@ -18,6 +19,7 @@ const IndexPage = async (): Promise<React.ReactElement> => {
   return (
     <>
       <CoverImageSection />
+      <WeekSection />
       <ConceptSection />
       <UpcomingEventsSection limit={3} />
       <SystemSection />

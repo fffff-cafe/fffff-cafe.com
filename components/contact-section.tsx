@@ -1,4 +1,5 @@
 import React, { ReactElement } from "react"
+import { QRCodeSVG } from "qrcode.react"
 import { ButtonLink, Section, SectionTitle } from "components/elements"
 import { slackUrl, twitterUrl } from "utils/info"
 
@@ -13,6 +14,17 @@ const ContactSection = (): ReactElement => {
         <ButtonLink href={slackUrl} variant="outline">
           Slackに参加する
         </ButtonLink>
+      </div>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "2rem", marginTop: "2rem" }}>
+        {[
+          { label: "X（Twitter）", url: twitterUrl },
+          { label: "Slack", url: slackUrl },
+        ].map(({ label, url }) => (
+          <figure key={label} style={{ margin: 0, textAlign: "center" }}>
+            <QRCodeSVG value={url} size={140} marginSize={2} title={`${label} QRコード`} />
+            <figcaption>{label}</figcaption>
+          </figure>
+        ))}
       </div>
     </Section>
   )
